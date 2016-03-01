@@ -1,6 +1,17 @@
-<% @gifs.each do |gif| %>
-<div id="<%= gif.id %>">
-<h1>  <%= gif.title %> </h1>
-  <%= image_tag gif.image %>
+
+<div class="container">
+  <div class="gifs">
+    <div class="row">
+      <h1 class="text-center">All Gifs</h1>
+    <% @gifs.each do |gif| %>
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3  gif">
+        <h3 class="text-center">  <%= link_to "#{gif.title}", gifs_path %> </h3>
+          <%= image_tag(gif.image, width: "250", height: "250") %>
+        <p>
+          <%= gif.description %>
+        </p>
+      </div>
+        <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
