@@ -11,8 +11,6 @@ class VisitorViewsAllGifsTest < ActionDispatch::IntegrationTest
 
     visit gifs_path
 
-save_and_open_page
-
     assert page.has_css?("img[src='https://media.giphy.com/media/7e0EvlBD7nxZu/giphy.gif']")
   end
 end
