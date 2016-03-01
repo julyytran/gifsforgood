@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class GifTest < ActiveSupport::TestCase
   should validate_presence_of(:title)
