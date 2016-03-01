@@ -40,7 +40,7 @@ class VisitorViewGifsByTagTest < ActionDispatch::IntegrationTest
 
     within "#gifs" do
       assert page.has_content?(gif_1.title)
-      assert page.has_css?("img[src='#{gif_1.image}'']")
+      assert page.has_css?("img[src='#{gif_1.image}']")
     end
   end
 
