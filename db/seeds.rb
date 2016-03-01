@@ -1,7 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+10.times do
+  Tag.create(name: Faker::Hipster.word)
+end
+
+20.times do
+  gif = Gif.create(title: Faker::Lorem.sentence,
+              description: Faker::Hacker.say_something_smart,
+              price: 100,
+              image: "https://placeholdit.imgix.net/~text?txtsize=60&bg=000000&txt=640%C3%97480&w=640&h=480&fm=png"
+              )
+  gif.tags << Tag.all.shuffle.first
+end
