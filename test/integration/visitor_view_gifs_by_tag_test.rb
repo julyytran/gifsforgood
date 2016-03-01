@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper'
 
 class VisitorViewGifsByTagTest < ActionDispatch::IntegrationTest
   test 'visitor views a tag page and sees all gifs in that tag' do
@@ -7,40 +7,74 @@ class VisitorViewGifsByTagTest < ActionDispatch::IntegrationTest
     gif_1.tags.create(name: "animated")
     gif_2.tags.create(name: "groups")
 
-    visit '/animated'
+    visit "/animated"
 
-    within '#gifs' do
+    within "#gifs" do
       assert page.has_content?(gif_1.title)
       assert page.has_css?("img[src='#{gif_1.image}']")
       refute page.has_content?(gif_2.title)
     end
 
-    visit '/groups'
+    visit "/groups"
 
-    within '#gifs' do
+    within "#gifs" do
       assert page.has_content?(gif_2.title)
-      assert page.has_css?("img[src='#{gif_2.image}']")
+      assert page.has_css?("img[src="#{gif_2.image}"]")
       refute page.has_content?(gif_1.title)
     end
   end
 
-  test 'visitor can see a gif with multiple tags on all tag pages' do
+  test "visitor can see a gif with multiple tags on all tag pages" do
     gif_1 = Gif.create(title: "LOL", description: "descriptive text", price: 100, image: "http://orig00.deviantart.net/73ba/f/2009/221/8/9/punkrock_kitty_animated_by_wikingerstn.gif")
     gif_1.tags.create(name: "animated")
     gif_1.tags.create(name: "cute")
 
-    visit '/animated'
+    visit "/animated"
 
-    within '#gifs' do
+    within "#gifs" do
       assert page.has_content?(gif_1.title)
       assert page.has_css?("img[src='#{gif_1.image}']")
     end
 
-    visit '/cute'
+    visit "/cute"
 
-    within '#gifs' do
+    within "#gifs" do
       assert page.has_content?(gif_1.title)
-      assert page.has_css?("img[src='#{gif_1.image}']")
+      assert page.has_css?("img[src='#{gif_1.image}'']")
     end
   end
+
+  test "sample factory test" do
+    gif_1 = create(:gif)
+    tag_1 = create(:tag)
+    gif_1.tags << tag_1
+    gif_1.tags << create(:tag)
+    gif_1.tags
+
+    assert_equal 2, gif_1.tags.count
+
+    visit "/#{tag_1.name}"
+    assert page.has_content?(gif_1.title)
+
+    gif_override = Gif.create(attributes_for(:gif, title: "I <3 July"))
+    assert_equal "I <3 July", gif_override.title
+
+    gif_2_tags = create(:gif_with_tags) #default is 2
+    assert_equal 2, gif_2_tags.tags.count
+
+    gif_4_tags = create(:gif_with_tags, tags_count: 4)
+    assert_equal 4, gif_4_tags.tags.count
+
+    tag_with_2_gifs = create(:tag_with_gifs)
+    tag_with_20_gifs = create(:tag_with_gifs, gifs_count: 20)
+
+    visit "/#{tag_with_20_gifs.name}"
+  end
 end
+
+# ~> LoadError
+# ~> cannot load such file -- test_helper
+# ~>
+# ~> /Users/heidi/.rvm/rubies/ruby-2.2.1/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require"
+# ~> /Users/heidi/.rvm/rubies/ruby-2.2.1/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require"
+# ~> /Users/heidi/Dropbox/Turing/2module/projects/gifsforgood/test/integration/visitor_view_gifs_by_tag_test.rb:1:in `<main>"

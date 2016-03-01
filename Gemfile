@@ -38,6 +38,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'faker', github: 'stympy/faker'
  end
 
 group :development do
