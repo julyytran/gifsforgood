@@ -1,0 +1,9 @@
+<h1><%= @tag.name  %></h1>
+<div id="gifs"
+  <% @tag.gifs.each do | gif | %>
+    <p><%= gif.title %><p>
+    <p><%= gif.description %><p>
+    <p><%= gif.price %><p>
+    <p><%= image_tag gif.image %><p>
+  <% end %>
+</div>
