@@ -38,8 +38,12 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (6.0.3)
+    autoprefixer-rails (6.3.3.1)
+      execjs
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     builder (3.2.2)
     capybara (2.6.2)
       addressable
@@ -114,6 +118,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.4)
     railties (4.2.5.1)
       actionpack (= 4.2.5.1)
       activesupport (= 4.2.5.1)
@@ -166,6 +175,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
+  bootstrap-sass (~> 3.2.0)
   capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
@@ -175,6 +186,7 @@ DEPENDENCIES
   pg (~> 0.15)
   pry-rails
   rails (= 4.2.5.1)
+  rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda (~> 3.5)

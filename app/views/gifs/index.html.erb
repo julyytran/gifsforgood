@@ -1,6 +1,10 @@
 <% @gifs.each do |gif| %>
-<div id="<%= gif.id %>">
 <h1>  <%= gif.title %> </h1>
   <%= image_tag gif.image %>
-</div>
+  <div id="<%= gif.id %>" class="card-reveal" style="display: block; transform: translateY(-100%);" >
+  <span class="card-title grey-text text-darken-4">Description: <i class="material-icons right">close</i></span>
+  <p>
+    <%= gif.description %>
+  </p>
+  </div>
 <% end %>
