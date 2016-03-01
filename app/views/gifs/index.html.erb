@@ -1,0 +1,6 @@
+<% @gifs.each do |gif| %>
+<div id="<%= gif.id %>">
+<h1>  <%= gif.title %> </h1>
+  <%= image_tag gif.image %>
+</div>
+<% end %>
