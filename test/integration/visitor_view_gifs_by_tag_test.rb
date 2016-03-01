@@ -13,7 +13,6 @@ class VisitorViewGifsByTagTest < ActionDispatch::IntegrationTest
       assert page.has_css?("img[src='#{gif_1.image}']")
       refute page.has_content?(gif_2.title)
 
-
     visit "/groups"
 
       assert page.has_content?(gif_2.title)
