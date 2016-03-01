@@ -1,9 +1,12 @@
-<h1>Viewing tag: <%= @tag.name  %></h1>
-<div id="gifs"
-  <% @tag.gifs.each do | gif | %>
-    <p><%= gif.title %><p>
-    <p><%= gif.description %><p>
-    <p>$<%= gif.price %><p>
-    <p><%= image_tag gif.image %><p>
-  <% end %>
+<h1 class="text-center">Viewing tag: <%= @tag.name  %></h1>
+<div class="container row">
+      <% @tag.gifs.each do | gif | %>
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 gif">
+        <p class="text-center">  <%= link_to "#{gif.title}", gifs_path %>
+          <%= image_tag(gif.image, width: "250") %>
+          <%= gif.description %>
+          <%= gif.price %>
+        </p>
+      </div>
+        <% end %>
 </div>
