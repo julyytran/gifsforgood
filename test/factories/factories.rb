@@ -1,7 +1,4 @@
 FactoryGirl.define do
-  factory :cart do
-    
-  end
   factory :tag do
     name { Faker::Hipster.word.capitalize }
 
