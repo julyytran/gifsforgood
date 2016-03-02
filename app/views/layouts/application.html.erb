@@ -7,7 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <div class="cart">
+    <%= link_to "Cart(#{@cart.count})", cart_path %>
+  </div>
+  <% flash.each do |type, message| %>
+    <%= content_tag :div, sanitize(message), class: "alert alert-#{type}" %>
+  <% end %>
 <%= yield %>
 
 </body>
