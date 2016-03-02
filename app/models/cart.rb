@@ -10,7 +10,7 @@ class Cart
     contents[gif_id.to_s] += 1
   end
 
-  def total
+  def count
     contents.values.sum
   end
 
