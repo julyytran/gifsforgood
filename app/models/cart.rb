@@ -6,8 +6,8 @@ class Cart
   end
 
   def add_gif(gif_id)
-    contents[gif_id.to_s] ||=0
-    contents[gif_id.to_s] +=1
+    contents[gif_id.to_s] ||= 0
+    contents[gif_id.to_s] += 1
   end
 
   def total
