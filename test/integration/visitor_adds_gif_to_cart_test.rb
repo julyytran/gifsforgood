@@ -5,12 +5,12 @@ class VisitorAddsGifToCartTest < ActionDispatch::IntegrationTest
     gif = create(:gif)
 
     visit gif_path(gif)
-save_and_open_page
+
     assert page.has_content?("Cart(0)")
 
     click_button "Purchase"
 
-    assert page.has_content?('You placed "#{gif.title}" into your cart.')
-    assert page.has_content?("Cart (1)")
+    assert page.has_content?("You added 1 license for #{gif.title}")
+    assert page.has_content?("Cart(1)")
   end
 end

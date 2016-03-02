@@ -1,9 +1,7 @@
-Cart(0)
-
 <h1><%= @gif.title %></h1>
 
 <p><%= image_tag @gif.image %></p>
 <p><%= @gif.description %></p>
 <p>
-  <%= button_to "Purchase" %>
+  <%= button_to "Purchase", cart_gifs_path(gif_id: @gif.id) %>
 </p>

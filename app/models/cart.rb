@@ -1,5 +1,20 @@
 class Cart
-  attr_reader :cart
+  attr_reader :contents
 
-  def initialize()
+  def initialize(initial_contents)
+    @contents = initial_contents || {}
+  end
+
+  def add_gif(gif_id)
+    contents[gif_id.to_s] ||=0
+    contents[gif_id.to_s] +=1
+  end
+
+  def total
+    contents.values.sum
+  end
+
+  def count_of(gif_id)
+    contents[gif_id.to_s]
+  end
 end
