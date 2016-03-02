@@ -11,7 +11,7 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
 
     click_on "Create Account"
 
-    assert page.has_content?("")
+    assert page.has_content?("Logged in as Brock")
   end
 
 
@@ -23,7 +23,7 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
 
     fill_in "Username", with: "Brock"
     fill_in "Password", with: "password"
-    click_on "Create Account"
+    click_on "Login"
 
     assert_equal "/dashboard", current_path
 
@@ -33,10 +33,4 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Logout")
   end
-
-  # And when I visit "/cart"
-  # Then I should see all of the data that was there when I was not logged in
-  # When I click "Logout"
-  # Then I should see see "Login"
-  # And I should not see "Logout"
 end

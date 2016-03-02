@@ -1,13 +1,5 @@
 class SessionsController < ApplicationController
 
-  def index
-
-  end
-
-  def new
-
-  end
-
   def create
     user = User.find_by(username: params[:session][:username])
 
@@ -18,5 +10,10 @@ class SessionsController < ApplicationController
       flash.now[:error] = "Invalid Login"
       render :new
     end
+  end
+
+  def destroy
+    session.clear
+    redirect_to login_path
   end
 end
