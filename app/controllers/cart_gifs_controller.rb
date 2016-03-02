@@ -16,4 +16,16 @@ class CartGifsController < ApplicationController
       [Gif.find(id.to_i), quantity]
     end
   end
+
+  def destroy
+    gif = Gif.find(params[:id])
+    @cart.contents.reject! { |gif_id| gif_id.to_i == gif.id }
+    flash[:success] = "Successfully removed license for
+    #{view_context.link_to gif.title, gif_path(gif.id)}"
+    if @cart.contents.empty?
+      redirect_to gifs_path
+    else
+      redirect_to cart_path
+    end
+  end
 end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
   get "/dashboard", to: "users#show"
   get "/cart", to: "cart_gifs#show"
+  delete "/cart", to: "cart_gifs#destroy"
 
   resources :users, only: [:new, :create]
   resources :tags, only: [:index]
