@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class VisitorAddsGifToCartTest < ActionDispatch::IntegrationTest
   test "displays message about putting gif in cart and shows cart content" do
