@@ -33,4 +33,18 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Logout")
   end
+
+  test "visitor adds stuff to cart and still sees it upon login" do
+    gif = create(:gif)
+    visit gif_path(gif)
+    click_button "Add to cart"
+
+    user = User.create(username: "Brock", password: "password")
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
+
+    visit 'cart'
+    assert_equal "/cart", current_path
+    assert page.has_content?(gif.title)
+    assert page.has_content?(gif.image)
+  end
 end
