@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="cart">
-    Cart(<%= @cart.total %>)
+    <%= link_to "Cart(#{@cart.total})"  %>
   </div>
   <% flash.each do |type, message| %>
     <%= content_tag :div, message, class: "alert alert_#{type}" %>
