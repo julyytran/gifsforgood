@@ -2,6 +2,8 @@ require "test_helper"
 
 class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
   test "user sees details about their order" do
+    skip
+
     user = User.create(username: "Jade", password: "passsword")
     order = user.orders.create
     order.gifs.create(
