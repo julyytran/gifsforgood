@@ -45,6 +45,7 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
     visit 'cart'
     assert_equal "/cart", current_path
     assert page.has_content?(gif.title)
-    assert page.has_content?(gif.image)
+    puts gif.image
+    assert page.has_content?(gif.description)
   end
 end
