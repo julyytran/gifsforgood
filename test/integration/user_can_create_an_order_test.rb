@@ -1,7 +1,7 @@
 require "test_helper"
 
 class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
-  test "usern can can checkout of cart to create an order" do
+  test "user can can checkout of cart to create an order" do
     user = User.create(username: "Dom", password: "password")
     # as an authenticated user
     ApplicationController.any_instance.stubs(:current_user).returns(user)
@@ -10,8 +10,8 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     visit gif_path(gif)
     click_on "Add to cart"
     # and I click checkout
-    click_on "checkout"
-
+    # save_and_open_page
+    click_on "Checkout"
     assert_equal "/checkout", current_path
     # I expect to be taken to order summary
 

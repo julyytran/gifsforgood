@@ -10,6 +10,9 @@
   <div class="cart">
     <%= link_to "Cart(#{@cart.count})", cart_path %>
   </div>
+  <div class="checkout">
+    <%= link_to "Checkout", new_order_path %>
+  </div>
   <% flash.each do |type, message| %>
     <%= content_tag :div, sanitize(message), class: "alert alert-#{type}" %>
   <% end %>
