@@ -13,6 +13,32 @@ class VisitorCanAdjustGifQuantityTest < ActionDispatch::IntegrationTest
     click_link "Cart(1)"
     # save_and_open_page
     assert_equal "/cart", current_path
+    within first("tr") do
+      assert page.has_content?(gif.title)
+      assert page.has_content?("1")
+    end
+
+    select(1)
+    click_on "Update Quantity"
+
+    assert_equal "/cart", current_path
+
+    within first("tr") do
+      assert page.has_content?("2")
+      assert page.has_content?("$2")
+    end
+    assert page.has_content?("Total: $2")
+
+    select(1)
+    click_on "Update Quantity"
+
+    assert_equal "/cart", current_path
+
+    within first("tr") do
+      assert page.has_content?("1")
+      assert page.has_content?("$1")
+    end
+    assert page.has_content?("Total: $1")
     ######## arange page layout so that quantity is displayed like this #########
     # assert page.has_content? ("Quantity: 1")
     ##########
