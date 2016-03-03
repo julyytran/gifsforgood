@@ -3,15 +3,12 @@
   <div class="gifs">
     <div class="row text-center">
       <h1>All Gifs</h1>
-    <% @gifs.each do |gif| %>
-      <div class="col-xs-9 col-sm-6 col-md-4 col-lg-3  gif">
-        <h3>  <%= link_to "#{gif.title}", gifs_path %> </h3>
-          <%= image_tag(gif.image, width: "250") %>
-        <p>
-          <%= gif.description %>
-        </p>
-      </div>
-    </div>
+        <% @gifs.each do |gif| %>
+          <div class="col-xs-9 col-sm-6 col-md-4 col-lg-3  gif">
+            <h3 class="gif-title"><%= link_to "#{gif.title}", gif_path(gif.id) %></h3>
+            <%= image_tag(gif.image, width: "250") %>
+            <p><%= gif.description %></p>
+          </div>
         <% end %>
   </div>
 </div>
