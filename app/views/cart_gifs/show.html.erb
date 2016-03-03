@@ -1,6 +1,6 @@
 <h1>Your Shopping Cart</h1>
 
-<% @gifs.each do |gif, quantity| %>
+<% @gifs_quant.each do |gif, quantity| %>
 <div id="gif-info">
   <%= image_path gif.image %>
   <p>Title, Price, Quanity:<%= gif.title %> <%= format_price(gif.price) %>: <%= quantity %>
@@ -10,4 +10,4 @@
 
 <% end %>
 
-<p>Total: <%=  format_price(get_total_price(@gifs)) %></p>
+<p>Total: <%=  format_price(get_total_price(@gifs_quant)) %></p>

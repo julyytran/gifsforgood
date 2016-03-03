@@ -12,9 +12,9 @@ class CartGifsController < ApplicationController
 
   def show
     ids = session[:cart]
-    @gifs = ids.map do |id, quantity|
+    @gifs_quant = ids.map do |id, quantity|
       [Gif.find(id.to_i), quantity]
-    end
+    end.to_h
   end
 
   def destroy
