@@ -6,13 +6,38 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body data-no-turbolink="true">
-  <div class="cart">
-    <%= link_to "Cart(#{@cart.count})", cart_path %>
+<body>
+  <div class="container">
+    <div class="row center">
+      <div class="col-md-4">
+        <h1 class="brand">gifs_for_good</h1>
+      </div>
+      <div class="col-md-4 middle">
+        <h3 class="brand">be_COMMITed</h3>
+      </div>
+    </div>
   </div>
-  <% flash.each do |type, message| %>
-    <%= content_tag :div, sanitize(message), class: "alert alert-#{type}" %>
-  <% end %>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <% if !current_user %>
+          <li><%= link_to "Login", login_path %></li>
+          <li><%= link_to "SignUp", new_user_path %></li>
+        <% else %>
+          <li><%= link_to "Logout", logout_path %></li>
+        <% end %>
+        <% if !@cart.contents.empty? %>
+          <li><%= link_to "Cart(#{@cart.count})", cart_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+  <div class="container-fluid">
+    <div class ="col-md-12">
+      <% flash.each do |type, message| %>
+        <%= content_tag :div, sanitize(message), class: "alert alert-#{type}" %>
+      <% end %>
+  </div>
 <%= yield %>
 
 </body>
