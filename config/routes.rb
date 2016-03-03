@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "users#show"
   get "/cart", to: "cart_gifs#show"
   delete "/cart", to: "cart_gifs#destroy"
+  patch "/cart", to: "cart_gif#patch"
 
   resources :users, only: [:new, :create]
   resources :tags, only: [:index]

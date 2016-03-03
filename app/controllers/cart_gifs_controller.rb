@@ -28,4 +28,9 @@ class CartGifsController < ApplicationController
       redirect_to cart_path
     end
   end
+
+  def update
+    @cart.contents[params[:id]] = params[:quantity].to_i
+    redirect_to cart_path
+  end
 end

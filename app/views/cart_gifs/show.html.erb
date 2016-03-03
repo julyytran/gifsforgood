@@ -19,12 +19,14 @@
             <td><%= gif.title %>
             <p><%= gif.description %></p></td>
             <td><%= format_price(gif.price) %></td>
-            <td><%= quantity %>
-              <% pry %>
-              <%= form_for @cart.contents, url: cart_gifs_path(id: gif.id) do |f| %>
-                <p><%= f.select @cart.contents[gif.id], (1..15).to_a, id: "quantity" %>
-              <p><%= f.submit "Update Quantity", method: :update %>
+            <td>
+              <%= quantity %>
+              <%= form_tag(cart_path(id: gif.id)) do %>
+                <input type="hidden" name="_method" value="patch">
+
+                <p><%= select quantity, (1..15).to_a, quantity: (1..15).to_a %>
               <% end %>
+              <p><%= submit_tag "Update Quantity", method: :patch %>
               <p><%= link_to "Remove", cart_path(id: gif.id), method: :delete %></p>
             </td>
             <td><%= format_price(quantity * gif.price) %></td>
