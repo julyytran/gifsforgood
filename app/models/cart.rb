@@ -17,8 +17,4 @@ class Cart
   def count_of(gif_id)
     contents[gif_id.to_s]
   end
-
-  def edit_gif(gif)
-
-  end
 end

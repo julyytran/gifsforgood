@@ -29,8 +29,11 @@ class CartGifsController < ApplicationController
     end
   end
 
-  def update
-    @cart.contents[params[:id]] = params[:quantity].to_i
+  def patch
+    gif = Gif.find(params["id"])
+    quantity = params[params["id"]].values.first.to_i
+    @cart.contents[params[:id]] = quantity
     redirect_to cart_path
+    flash[:success] = "Successfully updated quantity for #{gif.title} to #{quantity}"
   end
 end

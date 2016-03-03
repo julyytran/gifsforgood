@@ -2,28 +2,23 @@ require "test_helper"
 
 class VisitorCanAdjustGifQuantityTest < ActionDispatch::IntegrationTest
   test "cart total is adjusted based on each gifs quantity" do
-  # Background: My cart has an item in it
     gif = create(:gif)
-    #     As a visitor
-
     visit gif_path(gif)
     click_on "Add to cart"
-
-    #     When I visit "/cart"
     click_link "Cart(1)"
-    # save_and_open_page
+
     assert_equal "/cart", current_path
-    within first("tr") do
+    within page.all("tr")[1] do
       assert page.has_content?(gif.title)
       assert page.has_content?("1")
     end
 
-    select(1)
+    select(2)
     click_on "Update Quantity"
 
     assert_equal "/cart", current_path
 
-    within first("tr") do
+    within page.all("tr")[1] do
       assert page.has_content?("2")
       assert page.has_content?("$2")
     end
@@ -34,12 +29,11 @@ class VisitorCanAdjustGifQuantityTest < ActionDispatch::IntegrationTest
 
     assert_equal "/cart", current_path
 
-    within first("tr") do
+    within page.all("tr")[1] do
       assert page.has_content?("1")
       assert page.has_content?("$1")
     end
     assert page.has_content?("Total: $1")
-    ######## arange page layout so that quantity is displayed like this #########
     # assert page.has_content? ("Quantity: 1")
     ##########
     # Then I should see my item with a quantity of 1
