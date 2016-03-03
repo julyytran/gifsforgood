@@ -3,7 +3,7 @@
 # class CartTest < ActiveSupport::TestCase
 #   test "add gif to cart increases contents" do
 #     gif_1 = create(:gif)
-#     cart = Cart.new
+#     cart = Cart.new(gif_1)
 #     cart.add_gif(gif_1.id)
 #
 #     assert_equal 1, cart.contents.total
@@ -17,7 +17,7 @@
 #
 #   test "add 2 of a gif increases count of gif" do
 #     gif_1 = create(:gif)
-#     cart = Cart.new
+#     cart = Cart.new(gif_1)
 #     cart.add_gif(gif_1.id)
 #
 #     assert_equal 1, cart.count_of(gif_1.id)

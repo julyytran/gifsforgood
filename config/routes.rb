@@ -7,13 +7,14 @@ Rails.application.routes.draw do
   get "/dashboard", to: "users#show"
   get "/cart", to: "cart_gifs#show"
   delete "/cart", to: "cart_gifs#destroy"
+  get "/checkout", to: "orders#new"
   patch "/cart", to: "cart_gifs#patch"
 
   resources :users, only: [:new, :create]
   resources :tags, only: [:index]
   resources :gifs, only: [:index, :show]
   resources :cart_gifs, only: [:create]
-  resources :orders, only: [:index, :show]
+  resources :orders, only: [:index, :show, :create]
 
   get "/:name", :to => "tags#show", as: :tag
 

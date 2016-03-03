@@ -1,3 +1,13 @@
+<h1>Your Shopping Cart</h1>
+
+<% @gifs_quant.each do |gif, quantity| %>
+<div id="gif-info">
+  <%= image_path gif.image %>
+  <p>Title, Price, Quanity:<%= gif.title %> <%= format_price(gif.price) %>: <%= quantity %>
+    <%= link_to "Remove", cart_path(id: gif.id), method: :delete %></p>
+  <p><%= gif.description %></p>
+</div>
+
 <h1 class="text-center">Your Shopping Cart</h1>
 
 <div class="container">
@@ -12,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @gifs.each do |gif, quantity| %>
+      <% @gifs_quant.each do |gif, quantity| %>
         <div id="gif-info">
           <tr>
             <td><%= image_tag gif.image, width: 80 %></td>
@@ -27,6 +37,8 @@
                   <p><%= submit_tag "Update Quantity" %>
               <% end %>
 
+                <p>Total: <%=  format_price(get_total_price(@gifs_quant)) %></p>
+
               <p><%= link_to "Remove", cart_path(id: gif.id), method: :delete %></p>
             </td>
             <td><%= format_price(quantity * gif.price) %></td>
@@ -35,10 +47,11 @@
       <% end %>
       <tr>
         <td colspan=5 align=right>
-          Total: <%=  format_price(get_total_price(@gifs)) %></p>
+          Total: <%=  format_price(get_total_price(@gifs_quant)) %></p>
         </td>
       </tr>
     </tbody>
   </table>
+<% end %>
 
 </div>

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class VisitorCanRemoveItemFromCartTest < ActionDispatch::IntegrationTest
+class VisitorCanRemoveGifFromCartTest < ActionDispatch::IntegrationTest
   test "visitor no longer sees removed item in cart" do
     gif = create(:gif)
     gif2 = create(:gif)
