@@ -4,14 +4,18 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
   test "user sees details about their order" do
     user = User.create(username: "Jade", password: "passsword")
     order = user.orders.create
-    order.gifs.create(:gif)
+    order.gifs.create(
+      title: "hotline bling",
+      description: "cuz I know when that hotline bling",
+      price: 100,
+      image: "https://media.giphy.com/media/7e0EvlBD7nxZu/giphy.gif")
     #make join table order gifs
 
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
     visit "/orders"
 
-    assert page.has_link?("Order: 1")
+    assert page.has_link?("Order: #{order.id}")
 
     click_on "Order: 1"
 
