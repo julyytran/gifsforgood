@@ -1,0 +1,12 @@
+
+
+
+<% @gifs.each do |gif| %>
+  <%= gif.title %>
+  <%= gif.description %>
+  <%= @cart.gif_quantity(gif) %>
+<% end %>
+
+
+
+<%= link_to "Accept Order", orders_path(@order, contents: @cart.contents), method: :post %>

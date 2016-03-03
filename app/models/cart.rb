@@ -17,4 +17,17 @@ class Cart
   def count_of(gif_id)
     contents[gif_id.to_s]
   end
+
+  def gifs
+    @ids = contents.keys
+    gifs = @ids.map do |id|
+      Gif.find(id.to_i)
+    end
+  end
+
+  def gif_quantity(gif)
+    @contents.map do |id, quantity|
+      [Gif.find(gif.id).title, quantity]
+    end.to_h
+  end
 end

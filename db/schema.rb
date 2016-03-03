@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303022334) do
+ActiveRecord::Schema.define(version: 20160303144553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20160303022334) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "order_gifs", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "gif_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "order_gifs", ["gif_id"], name: "index_order_gifs_on_gif_id", using: :btree
+  add_index "order_gifs", ["order_id"], name: "index_order_gifs_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -58,5 +68,7 @@ ActiveRecord::Schema.define(version: 20160303022334) do
 
   add_foreign_key "gif_tags", "gifs"
   add_foreign_key "gif_tags", "tags"
+  add_foreign_key "order_gifs", "gifs"
+  add_foreign_key "order_gifs", "orders"
   add_foreign_key "orders", "users"
 end
