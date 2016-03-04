@@ -19,9 +19,5 @@ class UserKeepsCartGifsAfterLoginTest < ActionDispatch::IntegrationTest
 
     visit '/cart'
     assert page.has_content?("Cart(2)")
-    ############ add login/logout to navbar ###############
-    # click_on("Logout")
-    # assert page.has_content?("Login")
-    # refute page.has_content?("Logout")
   end
 end
