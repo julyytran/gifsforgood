@@ -23,7 +23,10 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
 
     fill_in "Username", with: "Brock"
     fill_in "Password", with: "password"
-    click_on "Login"
+
+    within ".login" do
+      click_on "Login"
+    end
 
     assert_equal "/dashboard", current_path
 
