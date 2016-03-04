@@ -28,7 +28,7 @@ class CartTest < ActiveSupport::TestCase
     assert_equal 2, cart.count_of(gif_1.id)
     assert_equal 3, cart.total_items
 
-    end
+  end
 
     test "gifs method returns gif objects" do
       gif_1 = create(:gif)

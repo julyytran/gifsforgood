@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "/", to: "sessions#index"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
+  delete "/logout", to: "sessions#destroy"
   get "/dashboard", to: "users#show"
   get "/cart", to: "cart_gifs#show"
   delete "/cart", to: "cart_gifs#destroy"

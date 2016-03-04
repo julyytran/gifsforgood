@@ -14,7 +14,6 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Logged in as Brock")
   end
 
-
   test "visitor can see their dashboard with a logout link" do
     user = User.create(username: "Brock", password: "password")
     visit '/'
@@ -31,9 +30,7 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
     assert_equal "/dashboard", current_path
 
     assert page.has_content?("Logged in as #{user.username}")
-
     refute page.has_content?("Login")
-
     assert page.has_content?("Logout")
   end
 
@@ -48,7 +45,6 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
     visit 'cart'
     assert_equal "/cart", current_path
     assert page.has_content?(gif.title)
-    puts gif.image
     assert page.has_content?(gif.description)
   end
 end
