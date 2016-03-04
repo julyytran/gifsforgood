@@ -2,7 +2,8 @@ require "test_helper"
 
 class UserCanViewAllPastOrdersTest < ActionDispatch::IntegrationTest
   test "user sees title for all past orders" do
-    user = User.create(username: "Jonas", password: "password")
+    # user = User.create(username: "Jonas", password: "password")
+    user = create(:user)
     order1 = user.orders.create
     order2 = user.orders.create
 
