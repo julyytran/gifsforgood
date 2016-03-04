@@ -1,14 +1,1 @@
 <h1>Order: <%= @order.id %></h1>
-
-Order status: <%= @order.status %>
-Total Price: <%= @order.total_price %>
-Order created: <%= @order.created_at %>
-
-<% @order.gifs.each do |gif| %>
-  <%= link_to gif.title, gif_path(gif) %>
-  <%= image_tag gif.image %>
-  <% @order.order_gifs.each do |order_gif| %>
-    <%= order_gif.quantity %>
-    <%= order_gif.subtotal %>
-  <% end %>
-<% end %>

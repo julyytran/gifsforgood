@@ -2,6 +2,7 @@ require "test_helper"
 
 class VisitorCanAdjustGifQuantityTest < ActionDispatch::IntegrationTest
   test "cart total is adjusted based on each gifs quantity" do
+    skip
     gif = create(:gif)
     visit gif_path(gif)
     click_on "Add to cart"
