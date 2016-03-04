@@ -19,7 +19,7 @@ class CartGifsController < ApplicationController
 
   def destroy
     gif = Gif.find(params[:id])
-    @cart.contents.reject! { |gif_id| gif_id.to_i == gif.id }
+    @cart.remove(gif.id)
     flash[:success] = "Successfully removed license for
     #{view_context.link_to gif.title, gif_path(gif.id)}"
     if @cart.contents.empty?
@@ -29,7 +29,7 @@ class CartGifsController < ApplicationController
     end
   end
 
-  def patch
+  def update
     gif = Gif.find(params["id"])
     quantity = params[params["id"]].values.first.to_i
     @cart.contents[params[:id]] = quantity

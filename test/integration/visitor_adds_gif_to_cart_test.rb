@@ -6,7 +6,7 @@ class VisitorAddsGifToCartTest < ActionDispatch::IntegrationTest
 
     visit gif_path(gif)
 
-    assert page.has_content?("Cart(0)")
+    refute page.has_content?("Cart")
 
     click_button "Add to cart"
 
