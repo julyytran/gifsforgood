@@ -2,8 +2,6 @@ require "test_helper"
 
 class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
   test "user sees details about their order" do
-    skip
-
     user = User.create(username: "Jade", password: "passsword")
     order = user.orders.create
     order.gifs.create(
@@ -11,7 +9,6 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
       description: "cuz I know when that hotline bling",
       price: 100,
       image: "https://media.giphy.com/media/7e0EvlBD7nxZu/giphy.gif")
-    #make join table order gifs
 
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
@@ -19,28 +16,39 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
 
     assert page.has_link?("Order: #{order.id}")
 
-    click_on "Order: 1"
+    click_on "Order: #{order.id}"
 
-    assert_equal "/order/1", current_path
+    assert_equal "/orders/#{order.id}", current_path
 
-    #       Then I should see each item that was ordered with the quantity and line-item subtotals
     order.gifs.each do |gif|
       assert page.has_link?("#{gif.title}")
       assert page.has_css?("img[src='#{gif.image}']")
     end
 
-    #       And I should see links to each item's show page
-    #gif title is link to gif show
+    order.order_gifs.each do |order_gif|
+      assesrt page.has_content?(order_gif.quantity)
+      assesrt page.has_content?(order_gif.subtotal)
+    end
 
     assert page.has_content?("#{order.status}")
-    assert page.has_content?("#{order.price}")
+    assert page.has_content?("#{order.total_price}")
     assert page.has_content?("#{order.created_at}")
 
+    assert page.has_content?("#{order.updated_at}")
+  end
+
+  test "user can see if order is complete" do
+    skip
+    assert page.has_content?("#{order.complete?}")
 
     #       If the order was completed or cancelled
     #       Then I should see a timestamp when the action took place
     #assert can see updated at time and whether it was completed or cancelled
+  end
 
+
+  test "" do
+  skip
     #       And if any of the items in the order were retired from the menu
     # "retire" = sold out. Retire a gif that was in the order
 
