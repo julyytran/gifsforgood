@@ -32,26 +32,4 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content? order.complete?
     assert page.has_content? order.updated_at
   end
-
-
-  test "" do
-    skip
-    user = User.create(username: "Jade", password: "passsword")
-
-    gif = create(:gif)
-
-    order = user.orders.create(total_price: 100, status: "Pending")
-    order_gif = order.order_gifs.create(gif_id: gif.id, quantity: 1, subtotal: 100)
-
-    ApplicationController.any_instance.stubs(:current_user).returns(user)
-
-    #       And if any of the items in the order were retired from the menu
-    # "retire" = sold out. Retire a gif that was in the order
-
-    #       Then they should still be able to access the item page
-    # assert can go to show for retired gif
-
-    #       But they should not be able to add the item to their cart
-    # refute that there is the button "add to cart"
-  end
 end
