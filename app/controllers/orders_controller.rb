@@ -8,16 +8,19 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = current_user.orders.new
-    @gifs = @cart.gifs
+    @order = Order.new
+    @cart_gifs = @cart.cart_gifs
   end
 
   def create
-    @order = current_user.orders.new
+    @user = current_user
+    @order = OrderProcessor.new(@cart, @user).process_order
     if @order.save
-    session[:order] = @cart.contents
-    flash[:success] = "Order Created"
-    redirect_to order_path(@order)
+      flash[:success] = "Order was successfully placed."
+      redirect_to orders_path
+    else
+      flash[:error] = "We're sorry, something weird happened. Please try your order again."
+      redirect_to "/cart"
     end
   end
 end
