@@ -18,7 +18,7 @@
             <td><%= image_tag gif.image, width: 80 %></td>
             <td><%= gif.title %>
             <p><%= gif.description %></p></td>
-            <td><%= gif.subtotal %></td>
+            <td><%= number_to_currency(gif.subtotal) %></td>
             <td>
               <%= form_tag(cart_path(id: gif.id), method: :patch) do %>
                 <p><%= select gif.id, gif.quantity, (1..15).to_a, selected: gif.quantity %></p>
@@ -26,13 +26,13 @@
               <% end %>
               <p><%= link_to "Remove", cart_path(id: gif.id), method: :delete %></p>
             </td>
-            <td><%= gif.subtotal %></td>
+            <td><%= number_to_currency(gif.subtotal) %></td>
           </tr>
         </div>
       <% end %>
       <tr>
         <td colspan=5 align=right>
-          <p>Total: <%= @cart.total_price %></p>
+          <p>Total: <%= number_to_currency(@cart.total_price) %></p>
           <p><%= link_to "Checkout", checkout_path %></p>
         </td>
       </tr>
