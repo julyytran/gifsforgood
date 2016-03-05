@@ -20,9 +20,9 @@ class VisitorCanAdjustGifQuantityTest < ActionDispatch::IntegrationTest
 
     within page.all("tr")[1] do
       assert page.has_content?("2")
-      assert page.has_content?("$2")
+      assert page.has_content?("$2.00")
     end
-    assert page.has_content?("Total: $2")
+    assert page.has_content?("Total: $2.00")
 
     select(1)
     click_on "Update Quantity"
@@ -31,8 +31,8 @@ class VisitorCanAdjustGifQuantityTest < ActionDispatch::IntegrationTest
 
     within page.all("tr")[1] do
       assert page.has_content?("1")
-      assert page.has_content?("$1")
+      assert page.has_content?("$1.00")
     end
-    assert page.has_content?("Total: $1")
+    assert page.has_content?("Total: $1.00")
   end
 end
