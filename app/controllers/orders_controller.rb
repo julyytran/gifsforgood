@@ -1,26 +1,38 @@
 class OrdersController < ApplicationController
+  around_action :wrap_in_transaction, only: :create
+
   def index
     @orders = current_user.orders
   end
 
   def show
-    @order = Order.find(params[:id])
-  end
-
-  def new
-    @order = Order.new
-    @cart_gifs = @cart.cart_gifs
+    if current_user.orders.find(params[:id])
+      @order = Order.find(params[:id])
+    end
   end
 
   def create
-    @user = current_user
-    @order = OrderProcessor.new(@cart, @user).process_order
-    if @order.save
+    if current_user
+      @user = current_user
+      @order = OrderProcessor.new(@cart, @user).process_order
+      session[:cart].clear
       flash[:success] = "Order was successfully placed."
       redirect_to orders_path
     else
-      flash[:error] = "We're sorry, something weird happened. Please try your order again."
-      redirect_to "/cart"
+      flash[:info] = "Please login or create a new account before checking out."
+      redirect_to login_path
+    end
+  end
+
+private
+
+  def wrap_in_transaction
+    ActiveRecord::Base.transaction do
+      begin
+        yield
+      ensure
+
+      end
     end
   end
 end

@@ -29,8 +29,7 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content? order.status
     assert page.has_content? order.total_price
     assert page.has_content? order.created_at
-
-    assert page.has_content? order.complete?
+    assert page.has_content? order.order_status
     assert page.has_content? order.updated_at
   end
 end

@@ -63,6 +63,6 @@ class CartTest < ActiveSupport::TestCase
     gif_2 = create(:gif)
     cart.add_gif(gif_2.id)
 
-    assert_equal "$3.00", cart.total_price
+    assert_equal 3.0, cart.total_price
   end
 end
