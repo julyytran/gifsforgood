@@ -24,14 +24,11 @@ class OrdersController < ApplicationController
   def create
     @user = current_user
     @order = OrderProcessor.new(@cart, @user).process_order
-    if @order.save
-      session[:cart].clear
-      flash[:success] = "Order was successfully placed."
-      redirect_to orders_path
-    else
-      flash[:error] = "We're sorry, something weird happened. Please try your order again."
-      redirect_to cart_path
-    end
+    session[:cart].clear
+    flash[:success] = "Order was successfully placed."
+    redirect_to orders_path
+    # flash[:error] = "We're sorry, something weird happened. Please try your order again."
+    # redirect_to cart_path
   end
 
 private

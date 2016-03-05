@@ -10,7 +10,8 @@ class OrderProcessor
   end
 
   def process_order
-    order = user.orders.create(total_price: cart.total_price, status: "Pending")
+    order = Order.create(total_price: cart.total_price, status: "Pending")
+    user.orders << order
     cart_gifs.each do | cart_gif |
       order.order_gifs.create(gif_id: cart_gif.id, quantity: cart_gif.quantity, subtotal: cart_gif.subtotal)
     end

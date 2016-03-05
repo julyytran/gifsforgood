@@ -57,4 +57,39 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content?(gif.title)
     assert page.has_button? "Accept Order"
   end
+
+  test "user can create multiple orders and view them" do
+    user = create(:user)
+    gif = create(:gif)
+    gif2 = create(:gif)
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
+
+    visit gif_path(gif)
+
+    click_button "Add to cart"
+
+    visit "/cart"
+
+    within "table" do
+      click_on "Checkout"
+    end
+    click_on "Accept Order"
+      # and they see all of their orders past and present
+    assert page.has_content? "Order: #{user.orders.first.id}"
+      # then user returns to shop and selects gif
+    visit gif_path(gif2)
+      # then user views cart
+    click_button "Add to cart"
+      # and clicks checkout
+    visit "/cart"
+      # then sees checkout page
+    within "table" do
+      click_on "Checkout"
+    end
+
+    click_on "Accept Order"
+
+    assert page.has_content? "Order: #{user.orders.first.id}"
+    assert page.has_content? "Order: #{user.orders.last.id}"
+  end
 end
