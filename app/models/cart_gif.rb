@@ -8,6 +8,6 @@ class CartGif < SimpleDelegator
   end
 
   def subtotal
-    "$#{quantity * self.price / 100}"
+    "$#{quantity * price / 100}"
   end
 end

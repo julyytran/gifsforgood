@@ -3,7 +3,7 @@ require "test_helper"
 class CartTest < ActiveSupport::TestCase
   test "add gif to cart increases contents" do
     gif_1 = create(:gif)
-    cart = Cart.new({gif_1.id.to_s => 1})
+    cart = Cart.new(gif_1.id.to_s => 1)
 
     assert_equal 1, cart.total_items
 
@@ -18,7 +18,7 @@ class CartTest < ActiveSupport::TestCase
 
   test "add 2 of a gif increases count of gif" do
     gif_1 = create(:gif)
-    cart = Cart.new({gif_1.id.to_s => 1})
+    cart = Cart.new(gif_1.id.to_s => 1)
 
     cart.add_gif(gif_1.id)
 
@@ -31,7 +31,7 @@ class CartTest < ActiveSupport::TestCase
 
   test "remove_gif removes gif from cart" do
     gif_1 = create(:gif)
-    cart = Cart.new({gif_1.id.to_s => 1})
+    cart = Cart.new(gif_1.id.to_s => 1)
 
     gif_2 = create(:gif)
     cart.add_gif(gif_2.id)
@@ -46,7 +46,7 @@ class CartTest < ActiveSupport::TestCase
   test "cartgifs method returns cartgif objects" do
     gif_1 = create(:gif)
     gif_2 = create(:gif)
-    cart = Cart.new({gif_1.id.to_s => 1})
+    cart = Cart.new(gif_1.id.to_s => 1)
 
     cart.add_gif(gif_2.id)
 
@@ -56,7 +56,7 @@ class CartTest < ActiveSupport::TestCase
 
   test "total price returns total price" do
     gif_1 = create(:gif)
-    cart = Cart.new({gif_1.id.to_s => 1})
+    cart = Cart.new(gif_1.id.to_s => 1)
 
     cart.add_gif(gif_1.id)
 
