@@ -29,13 +29,13 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content? order.status
     assert page.has_content? order.total_price
     assert page.has_content? order.created_at
-
     assert page.has_content? order.complete?
     assert page.has_content? order.updated_at
   end
 
 
   test "" do
+    skip
     user = User.create(username: "Jade", password: "passsword")
 
     gif = create(:gif)
@@ -45,7 +45,6 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
 
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
-  skip
     #       And if any of the items in the order were retired from the menu
     # "retire" = sold out. Retire a gif that was in the order
 
