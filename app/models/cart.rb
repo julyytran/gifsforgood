@@ -10,24 +10,25 @@ class Cart
     contents[gif_id.to_s] += 1
   end
 
-  def count
+  def remove_gif(gif_id)
+    contents.reject! { |id| id == gif_id.to_s }
+  end
+
+  def total_items
     contents.values.sum
   end
 
-  def count_of(gif_id)
-    contents[gif_id.to_s]
+  def total_price
+    prices = cart_gifs.map do |cart_gif|
+      (cart_gif.quantity * cart_gif.price).to_f / 100
+    end
+    "$#{prices.reduce(:+)}0"
   end
 
-  def gifs
-    @ids = contents.keys
-    gifs = @ids.map do |id|
-      Gif.find(id.to_i)
+  def cart_gifs
+    contents.map do |gif_id, quantity|
+      CartGif.new(gif_id, quantity)
     end
   end
 
-  def gif_quantity(gif)
-    @contents.map do |id, quantity|
-      [Gif.find(gif.id).title, quantity]
-    end.to_h
-  end
 end

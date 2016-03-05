@@ -6,7 +6,7 @@ class VisitorAddsGifToCartTest < ActionDispatch::IntegrationTest
 
     visit gif_path(gif)
 
-    assert page.has_content?("Cart(0)")
+    refute page.has_content?("Cart")
 
     click_button "Add to cart"
 
@@ -23,7 +23,6 @@ class VisitorAddsGifToCartTest < ActionDispatch::IntegrationTest
 
     assert_equal "/cart", current_path
     assert page.has_content?(gif.title)
-    # assert page.has_content?(gif.image)
     assert page.has_content?(gif.description)
     assert page.has_content?("$1")
     assert page.has_content?(gif.description)

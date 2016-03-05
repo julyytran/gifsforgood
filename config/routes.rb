@@ -3,19 +3,22 @@ Rails.application.routes.draw do
   get "/", to: "sessions#index"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
-  get "/dashboard", to: "users#show"
-  get "/cart", to: "cart_gifs#show"
-  delete "/cart", to: "cart_gifs#destroy"
-  get "/checkout", to: "orders#new"
-  patch "/cart", to: "cart_gifs#patch"
+  delete "/logout", to: "sessions#destroy"
 
   resources :users, only: [:new, :create]
-  resources :tags, only: [:index]
-  resources :gifs, only: [:index, :show]
-  resources :cart_gifs, only: [:create]
-  resources :orders, only: [:index, :show, :create]
+  get "/dashboard", to: "users#show"
 
+  resources :cart_gifs, only: [:create]
+  get "/cart", to: "cart_gifs#show"
+  delete "/cart", to: "cart_gifs#destroy"
+  patch "/cart", to: "cart_gifs#update"
+
+  resources :orders, only: [:index, :show, :create]
+  get "/checkout", to: "orders#new"
+
+  resources :gifs, only: [:index, :show]
+
+  resources :tags, only: [:index]
   get "/:name", :to => "tags#show", as: :tag
 
 end

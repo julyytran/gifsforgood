@@ -5,21 +5,18 @@ class CartGifsController < ApplicationController
     gif = Gif.find(params[:gif_id])
     @cart.add_gif(gif.id)
     session[:cart] = @cart.contents
-    flash[:notice] =
-      "You added #{pluralize(@cart.count_of(gif.id), 'license')} for #{gif.title}"
+    flash[:notice] = "You added #{pluralize(@cart.cart_gifs.first.quantity, 'license')} for #{gif.title}"
     redirect_to gifs_path
   end
 
   def show
     ids = session[:cart]
-    @gifs_quant = ids.map do |id, quantity|
-      [Gif.find(id.to_i), quantity]
-    end.to_h
+    @cart_gifs = @cart.cart_gifs
   end
 
   def destroy
     gif = Gif.find(params[:id])
-    @cart.contents.reject! { |gif_id| gif_id.to_i == gif.id }
+    @cart.remove_gif(gif.id)
     flash[:success] = "Successfully removed license for
     #{view_context.link_to gif.title, gif_path(gif.id)}"
     if @cart.contents.empty?
@@ -29,9 +26,9 @@ class CartGifsController < ApplicationController
     end
   end
 
-  def patch
-    gif = Gif.find(params["id"])
-    quantity = params[params["id"]].values.first.to_i
+  def update
+    gif = Gif.find(params[:id])
+    quantity = params[params[:id]].values.first.to_i
     @cart.contents[params[:id]] = quantity
     redirect_to cart_path
     flash[:success] = "Successfully updated quantity for #{gif.title} to #{quantity}"

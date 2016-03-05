@@ -27,7 +27,7 @@
           <li><%= link_to "Logout", logout_path %></li>
         <% end %>
         <% if !@cart.contents.empty? %>
-          <li><%= link_to "Cart(#{@cart.count})", cart_path %></li>
+          <li><%= link_to "Cart(#{@cart.total_items})", cart_path %></li>
           <li class="checkout"><%= link_to "Checkout", checkout_path %></li>
         <% end %>
       </ul>

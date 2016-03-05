@@ -5,7 +5,9 @@ class UserCanViewAllPastOrdersTest < ActionDispatch::IntegrationTest
     user = User.create(username: "Jonas", password: "password")
 
     order1 = user.orders.create
+    order1.gifs << create(:gif)
     order2 = user.orders.create
+    order2.gifs << create(:gif)
 
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
