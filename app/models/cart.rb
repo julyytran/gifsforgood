@@ -25,6 +25,10 @@ class Cart
     "$#{prices.reduce(:+)}0"
   end
 
+  def has_gifs?
+    contents.count > 0
+  end
+
   def cart_gifs
     contents.map do |gif_id, quantity|
       CartGif.new(gif_id, quantity)

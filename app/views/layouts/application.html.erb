@@ -20,13 +20,14 @@
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
       <ul class="nav nav-tabs">
-        <% if !current_user %>
+        <li><%= link_to "Shop", root_path %></li>
+        <% if current_user %>
+          <li><%= link_to "Logout", logout_path %></li>
+        <% else %>
           <li><%= link_to "Login", login_path %></li>
           <li><%= link_to "SignUp", new_user_path %></li>
-        <% else %>
-          <li><%= link_to "Logout", logout_path %></li>
         <% end %>
-        <% if !@cart.contents.empty? %>
+        <% if @cart.has_gifs? %>
           <li><%= link_to "Cart(#{@cart.total_items})", cart_path %></li>
           <li class="checkout"><%= link_to "Checkout", checkout_path %></li>
         <% end %>
