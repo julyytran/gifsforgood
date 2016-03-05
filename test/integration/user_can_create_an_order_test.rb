@@ -12,17 +12,11 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
       click_on "Checkout"
     end
 
-    assert_equal "/checkout", current_path
-    assert page.has_content?(gif.title)
-    assert page.has_content?(gif.description)
-    assert page.has_content?("1")
-
-    click_on "Accept Order"
-    assert page.has_content?("Order was successfully placed.")
     assert_equal "/orders", current_path
+    assert page.has_content?("Order was successfully placed.")
 
     within "table" do
-      assert page.has_content? user.orders.last.id
+      assert page.has_content? "Order: #{user.orders.last.id}"
     end
   end
 
@@ -54,8 +48,9 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
       click_on "Checkout"
     end
 
-    assert page.has_content?(gif.title)
-    assert page.has_button? "Accept Order"
+    within "table" do
+      assert page.has_content? "Order: #{user.orders.last.id}"
+    end
   end
 
   test "user can create multiple orders and view them" do
@@ -65,7 +60,6 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
     visit gif_path(gif)
-
     click_button "Add to cart"
 
     visit "/cart"
@@ -73,21 +67,17 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     within "table" do
       click_on "Checkout"
     end
-    click_on "Accept Order"
-      # and they see all of their orders past and present
+
     assert page.has_content? "Order: #{user.orders.first.id}"
-      # then user returns to shop and selects gif
+
     visit gif_path(gif2)
-      # then user views cart
     click_button "Add to cart"
-      # and clicks checkout
+
     visit "/cart"
-      # then sees checkout page
+
     within "table" do
       click_on "Checkout"
     end
-
-    click_on "Accept Order"
 
     assert page.has_content? "Order: #{user.orders.first.id}"
     assert page.has_content? "Order: #{user.orders.last.id}"

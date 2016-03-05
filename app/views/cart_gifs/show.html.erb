@@ -33,7 +33,7 @@
       <tr>
         <td colspan=5 align=right>
           <p>Total: <%= number_to_currency(@cart.total_price) %></p>
-          <p><%= link_to "Checkout", checkout_path %></p>
+          <p><%= link_to "Checkout", orders_path, method: :post %></p>
         </td>
       </tr>
     </tbody>
