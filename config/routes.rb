@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   patch "/cart", to: "cart_gifs#update"
 
   resources :orders, only: [:index, :show, :create]
-  get "/checkout", to: "orders#new"
 
   resources :gifs, only: [:index, :show]
 

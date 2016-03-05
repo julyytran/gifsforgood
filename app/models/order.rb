@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   has_many :order_gifs
   has_many :gifs, through: :order_gifs
 
-  def complete?
+  def order_status
     if status == "completed"
       "Order Complete on #{updated_at}"
     elsif status == "cancelled"
