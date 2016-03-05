@@ -33,10 +33,9 @@ class Cart
   # end
 
   def cart_gifs
-    lol = contents.map do |gif_id, quantity|
-      [CartGif.new(Gif.find(gif_id)), quantity]
-    end.to_h
-    binding.pry
+    contents.map do |gif_id, quantity|
+      CartGif.new(gif_id, quantity)
+    end
   end
 
 end
