@@ -11,26 +11,16 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new
-    if current_user
-      @order = Order.new
-      @cart_gifs = @cart.cart_gifs
-    else
-      flash[:info] = "Please login or create a new account before checking out."
-      redirect_to login_path
-    end
-  end
-
   def create
-    @user = current_user
-    @order = OrderProcessor.new(@cart, @user).process_order
-    if @order.save
+    if current_user
+      @user = current_user
+      @order = OrderProcessor.new(@cart, @user).process_order
       session[:cart].clear
       flash[:success] = "Order was successfully placed."
       redirect_to orders_path
     else
-      flash[:error] = "We're sorry, something weird happened. Please try your order again."
-      redirect_to cart_path
+      flash[:info] = "Please login or create a new account before checking out."
+      redirect_to login_path
     end
   end
 
@@ -41,7 +31,7 @@ private
       begin
         yield
       ensure
-        raise ActiveRecord::Rollback
+
       end
     end
   end
