@@ -20,14 +20,14 @@ class Cart
 
   def total_price
     prices = cart_gifs.map do |cart_gif|
-      (cart_gif.quantity * cart_gif.gif.price).to_f / 100
+      (cart_gif.quantity * cart_gif.price).to_f / 100
     end
     "$#{prices.reduce(:+)}0"
   end
 
   def cart_gifs
     contents.map do |gif_id, quantity|
-      CartGif.new(gif_id, quantity)
+      CartGif.new(Gif.find(gif_id))
     end
   end
 end

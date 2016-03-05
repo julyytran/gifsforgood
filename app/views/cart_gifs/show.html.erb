@@ -1,11 +1,11 @@
 <h1 class="text-center">Your Shopping Cart</h1>
 <div id="gif-info">
 <% @cart_gifs.each do |cart_gif| %>
-  <%= image_tag cart_gif.gif.image, width: 80 %>
-  <%= cart_gif.gif.title %>
+  <%= image_tag cart_gif.image, width: 80 %>
+  <%= cart_gif.title %>
   <%= cart_gif.quantity %>
-  <%= cart_gif.gif.description %>
+  <%= cart_gif.description %>
   Total: <%= cart_gif.subtotal %>
-  <p><%= link_to "Remove", cart_path(id: cart_gif.gif.id), method: :delete %></p>
+  <p><%= link_to "Remove", cart_path(id: cart_gif.id), method: :delete %></p>
 </div>
 <% end %>

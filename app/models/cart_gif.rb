@@ -1,12 +1,21 @@
 class CartGif < SimpleDelegator
-  attr_reader :gif, :quantity
+  attr_reader :quantity
 
-  def initialize(gif_id, quantity)
-    @gif = Gif.find(gif_id)
-    @quantity = quantity
+  def initialize(gif)
+    super
+  end
+
+  def quantity
+    10
   end
 
   def subtotal
-    "$#{quantity * gif.price / 100}"
+    "$#{quantity * self.price / 100}"
   end
 end
+
+# class LazyEmployee < SimpleDelegator
+#   def initialize(sandwich_maker)
+#     super
+#   end
+# end
