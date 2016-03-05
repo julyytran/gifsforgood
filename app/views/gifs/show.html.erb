@@ -3,5 +3,9 @@
 <p><%= image_tag @gif.image %></p>
 <p><%= @gif.description %></p>
 <p>
+  <% if @gif.retired? %>
+  <%= "Sorry, this gif is no longer available" %>
+  <% else %>
   <%= button_to "Add to cart", cart_gifs_path(gif_id: @gif.id) %>
+  <% end %>
 </p>
