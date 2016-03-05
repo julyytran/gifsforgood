@@ -1,5 +1,2 @@
-class Admin::UsersController < ApplicationController
-  def show
-
-  end
+class Admin::UsersController < Admin::BaseController
 end
