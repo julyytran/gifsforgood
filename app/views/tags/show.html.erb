@@ -2,7 +2,7 @@
 <div class="container row">
       <% @tag.gifs.each do | gif | %>
       <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 gif">
-        <p class="text-center">  <%= link_to "#{gif.title}", gifs_path %>
+        <p class="text-center">  <%= link_to "#{gif.title}", gif_path(gif) %>
           <%= image_tag(gif.image, width: "250") %>
           <%= gif.description %>
           <%= gif.price %>

@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  validates :status, presence: true
+  validates :total_price, presence: true, numericality: { greater_than: 0 }
   belongs_to :user
   has_many :order_gifs
   has_many :gifs, through: :order_gifs
