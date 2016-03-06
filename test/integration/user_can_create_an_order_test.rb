@@ -6,7 +6,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     ApplicationController.any_instance.stubs(:current_user).returns(user)
     gif = create(:gif)
     visit gif_path(gif)
-    click_on "Add to cart"
+    click_link "Add to cart"
     visit "/cart"
     within "table" do
       click_on "Checkout"
@@ -24,7 +24,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     user = create(:user)
     gif = create(:gif)
     visit gif_path(gif)
-    click_on "Add to cart"
+    click_link "Add to cart"
     visit "/cart"
     within "table" do
       click_on "Checkout"
@@ -60,7 +60,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
     visit gif_path(gif)
-    click_button "Add to cart"
+    click_link "Add to cart"
 
     visit "/cart"
 
@@ -71,7 +71,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content? "Order: #{user.orders.first.id}"
 
     visit gif_path(gif2)
-    click_button "Add to cart"
+    click_link "Add to cart"
 
     visit "/cart"
 

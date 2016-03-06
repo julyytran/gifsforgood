@@ -1,11 +1,17 @@
-<h1><%= @gif.title %></h1>
+<div class="row product">
+    <div class="col-md-5 col-md-offset-0"><p><%= image_tag @gif.image, width: 400 %></p>
+</div>
+    <div class="col-md-7">
+        <h2><%= @gif.title %></h2>
+        <p><%= @gif.description %></p>
 
-<p><%= image_tag @gif.image %></p>
-<p><%= @gif.description %></p>
-<p>
-  <% if @gif.retired? %>
-  <%= "Sorry, this gif is no longer available" %>
-  <% else %>
-  <%= button_to "Add to cart", cart_gifs_path(gif_id: @gif.id) %>
-  <% end %>
-</p>
+        <h3><%= number_to_currency(@gif.format_price) %></h3>
+        <p>
+          <% if @gif.retired? %>
+          <%= "Sorry, this gif is no longer available" %>
+          <% else %>
+          <button class="btn btn-default"><%= link_to "Add to cart", cart_gifs_path(gif_id: @gif.id), method: :post %></button>
+          <% end %>
+        </p>
+    </div>
+</div>

@@ -5,23 +5,23 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Alef|Poiret+One' %>
 </head>
 <body>
+<div class="jumbotron hero">
   <div class="container">
     <div class="row center">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <h1 class="brand">gifs_for_good</h1>
-      </div>
-      <div class="col-md-4 middle">
-        <h3 class="brand">be_COMMITed</h3>
-      </div>
+        <h3 class="brand">COMMIT_yourself</h3>
     </div>
   </div>
-  <nav class="navbar navbar-default navbar-static-top">
+</div>
+  <nav class="navbar navbar-default navbar-static-top col-md-offset-8 col-md-4">
     <div class="container">
-      <ul class="nav nav-tabs">
-        <li><%= link_to "Shop", root_path, class: "glyphicon" %></li>
+      <ul class="nav navbar-nav navbar-right">
         <% if @cart.has_gifs? %>
+          <li><%= link_to "Shop", root_path, class: "glyphicon" %></li>
           <li><%= link_to " Cart(#{@cart.total_items})", cart_path, class: "glyphicon glyphicon-shopping-cart" %></li>
         <% end %>
         <% if current_user %>

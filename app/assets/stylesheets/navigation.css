@@ -7,13 +7,10 @@ h1.brand {
 h3.brand {
   font-size: 150%;
   display:inline;
-  padding-top: 70px;
   background-color: #999999;
 }
 
 .center {
   min-height: 5em;
   vertical-align: middle
-
-
 }
