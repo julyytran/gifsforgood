@@ -14,7 +14,7 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Logged in as Brock")
   end
 
-  test "visitor can see their dashboard with a logout link" do
+  test "visitor can login and see their dashboard with a logout link" do
     user = User.create(username: "Brock", password: "password")
     visit '/'
 
@@ -39,8 +39,7 @@ class VisitorCanRegisterAndLoginTest < ActionDispatch::IntegrationTest
     visit gif_path(gif)
     click_button "Add to cart"
 
-    user = User.create(username: "Brock", password: "password")
-    ApplicationController.any_instance.stubs(:current_user).returns(user)
+    create_and_login_user
 
     visit 'cart'
     assert_equal "/cart", current_path

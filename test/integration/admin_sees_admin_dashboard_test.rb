@@ -2,8 +2,7 @@ require 'test_helper'
 
 class AdminSeesAdminDashboardTest < ActionDispatch::IntegrationTest
   test "admin sees admin dashboard" do
-    admin = User.create(username: "July", password: "password", role: 1)
-    ApplicationController.any_instance.stubs(:current_user).returns(admin)
+    create_and_return_admin
 
     visit "/admin/dashboard"
 
@@ -11,9 +10,8 @@ class AdminSeesAdminDashboardTest < ActionDispatch::IntegrationTest
   end
 
   test "registered user sees 404 when trying to visit admin dashboard" do
-    user = create(:user)
-    ApplicationController.any_instance.stubs(:current_user).returns(user)
-
+    create_and_login_user
+    
     visit "/admin/dashboard"
 
     refute page.has_content?("Admin Dashboard")
