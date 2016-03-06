@@ -26,7 +26,7 @@
         <% else %>
           <li><%= link_to "Logout", logout_path, method: :delete %></li>
         <% end %>
-        <% if !@cart.contents.empty? %>
+        <% if @cart.contains_items? %>
           <li><%= link_to "Cart(#{@cart.total_items})", cart_path %></li>
         <% end %>
       </ul>

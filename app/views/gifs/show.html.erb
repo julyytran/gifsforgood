@@ -6,6 +6,6 @@
   <% if @gif.retired? %>
   <%= "Sorry, this gif is no longer available" %>
   <% else %>
-  <%= button_to "Add to cart", cart_gifs_path(gif_id: @gif.id) %>
+  <%= button_to "Add to cart", cart_gifs_path(id: @gif.id) %>
   <% end %>
 </p>

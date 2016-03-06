@@ -2,7 +2,7 @@ class CartGifsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def create
-    gif = Gif.find(params[:gif_id])
+    gif = find_gif
     @cart.add_gif(gif.id)
     session[:cart] = @cart.contents
     flash[:notice] =
@@ -16,7 +16,7 @@ class CartGifsController < ApplicationController
   end
 
   def destroy
-    gif = Gif.find(params[:id])
+    gif = find_gif
     @cart.remove_gif(gif.id)
     flash[:success] = "Successfully removed license for
     #{view_context.link_to gif.title, gif_path(gif.id)}"
@@ -28,7 +28,7 @@ class CartGifsController < ApplicationController
   end
 
   def update
-    gif = Gif.find(params[:id])
+    gif = find_gif
     quantity = params[params[:id]].values.first.to_i
     @cart.contents[params[:id]] = quantity
     redirect_to cart_path
