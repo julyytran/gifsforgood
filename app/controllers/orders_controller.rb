@@ -2,7 +2,11 @@ class OrdersController < ApplicationController
   around_action :wrap_in_transaction, only: :create
 
   def index
-    @orders = current_user.orders
+    if current_user
+      @orders = current_user.orders
+    else
+      render file: "/public/404"
+    end
   end
 
   def show
