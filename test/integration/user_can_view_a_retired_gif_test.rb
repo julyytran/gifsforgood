@@ -16,6 +16,6 @@ class UserCanViewARetiredGifTest < ActionDispatch::IntegrationTest
     visit order_path(order.id)
 
     click_link gif.title
-    refute page.has_button? "Add to cart"
+    refute page.has_link? "Add to cart"
   end
 end
