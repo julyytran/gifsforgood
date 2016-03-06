@@ -13,9 +13,7 @@ class UserKeepsCartGifsAfterLoginTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Cart(2)")
 
-    user = User.create(username: "July", password: "password")
-
-    ApplicationController.any_instance.stubs(:current_user).returns(user)
+    create_and_login_user
 
     visit '/cart'
     assert page.has_content?("Cart(2)")

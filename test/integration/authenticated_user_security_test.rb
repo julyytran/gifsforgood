@@ -28,12 +28,19 @@ class AuthenticatedUserSecuirtyTest < ActionDispatch::IntegrationTest
   end
 
   test "user cannot view admin paths" do
-    user = create(:user)
-    ApplicationController.any_instance.stubs(:current_user).returns(user)
+    create_and_login_user
 
     visit "/admin/dashboard"
 
     refute page.has_content? "Admin Dashboard"
     assert page.has_content? "The page you were looking for doesn't exist"
+  end
+
+  test "user cannot make self admin" do
+    create_and_login_user
+    
+    visit "/users/new"
+
+    refute page.has_content? "Role"
   end
 end

@@ -4,10 +4,15 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
   test "logged_in user can checkout from cart to create an order" do
     user = create(:user)
     ApplicationController.any_instance.stubs(:current_user).returns(user)
+
     gif = create(:gif)
+
     visit gif_path(gif)
+
     click_link "Add to cart"
+
     visit "/cart"
+
     within "table" do
       click_on "Checkout"
     end

@@ -35,4 +35,7 @@ class Cart
     end
   end
 
+  def contains_items?
+    !contents.empty?
+  end
 end

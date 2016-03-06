@@ -28,4 +28,10 @@ class UnauthenticatedUserSecurityTest < ActionDispatch::IntegrationTest
     refute page.has_content? "Admin Dashboard"
     assert page.has_content? "The page you were looking for doesn't exist"
   end
+
+  test "visitor cannot make self admin" do
+    visit "/users/new"
+
+    refute page.has_content? "Role"
+  end
 end

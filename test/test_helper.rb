@@ -25,4 +25,24 @@ class ActionDispatch::IntegrationTest
     DatabaseCleaner.clean
     super
   end
+
+  def create_and_return_admin
+    admin = User.create(username: "July", password: "password", role: 1)
+    ApplicationController.any_instance.stubs(:current_user).returns(admin)
+  end
+
+  def create_and_login_user
+    user = User.create(username: "Brock", password: "password")
+
+    visit '/'
+
+    click_on "Login"
+
+    fill_in "Username", with: "Brock"
+    fill_in "Password", with: "password"
+
+    within ".login" do
+      click_on "Login"
+    end
+  end
 end
