@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   get "/dashboard", to: "users#show"
 
+  namespace :admin do
+    get "/dashboard", to: "users#show"
+  end
+
   resources :cart_gifs, only: [:create]
   get "/cart", to: "cart_gifs#show"
   delete "/cart", to: "cart_gifs#destroy"

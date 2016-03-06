@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :orders
   has_many :order_gifs, through: :orders
+
+  enum role: %w(default admin)
 end
