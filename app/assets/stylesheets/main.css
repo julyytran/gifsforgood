@@ -1,0 +1,18 @@
+.gif-title {
+  min-height: 70px;
+  margin-top: 30px;
+  background-color: yellow;
+  vertical-align: bottom;
+}
+
+a.gif-title {
+  color: black;
+}
+
+h4.gif-title {
+  vertical-align: bottom;
+}
+
+.vertical {
+  vertical-align:  bottom;
+}
