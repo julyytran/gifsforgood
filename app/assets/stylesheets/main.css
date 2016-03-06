@@ -1,6 +1,9 @@
 * {
   font-family: 'Alef', sans-serif;
 }
+.body {
+  background-color: #B8EBCB;
+}
 
 .jumbotron {
   background-image: url(https://images.unsplash.com/uploads/14127101912749510b8ed/82743738?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=16c62adec1b18de2eea1e656fdd197e9);
