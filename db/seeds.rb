@@ -10,3 +10,5 @@ end
               )
   gif.tags << Tag.all.shuffle.first
 end
+
+User.create(username: "Brian", password: "password", role: 1)
