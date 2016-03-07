@@ -20,9 +20,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     assert_equal "/orders", current_path
     assert page.has_content?("Order was successfully placed.")
 
-    within "table" do
-      assert page.has_content? "Order: #{user.orders.last.id}"
-    end
+    assert page.has_content? "order_#{user.orders.last.id}"
   end
 
   test "logged out user prompted to log in before checkout" do
@@ -46,16 +44,14 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     end
 
     assert_equal "/dashboard", current_path
-    assert page.has_content?("Logged in as #{user.username}")
+    assert page.has_content?("logged_in_as_#{user.username}")
 
     visit "/cart"
     within "table" do
       click_on "Checkout"
     end
 
-    within "table" do
-      assert page.has_content? "Order: #{user.orders.last.id}"
-    end
+      assert page.has_content? "order_#{user.orders.last.id}"
   end
 
   test "user can create multiple orders and view them" do
@@ -73,7 +69,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
       click_on "Checkout"
     end
 
-    assert page.has_content? "Order: #{user.orders.first.id}"
+    assert page.has_content? "order_#{user.orders.first.id}"
 
     visit gif_path(gif2)
     click_link "Add to cart"
@@ -84,7 +80,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
       click_on "Checkout"
     end
 
-    assert page.has_content? "Order: #{user.orders.first.id}"
-    assert page.has_content? "Order: #{user.orders.last.id}"
+    assert page.has_content? "order_#{user.orders.first.id}"
+    assert page.has_content? "order_#{user.orders.last.id}"
   end
 end

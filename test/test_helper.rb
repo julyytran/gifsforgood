@@ -36,7 +36,7 @@ class ActionDispatch::IntegrationTest
 
     visit '/'
 
-    click_on "Login"
+    click_on "login"
 
     fill_in "Username", with: "Brock"
     fill_in "Password", with: "password"
