@@ -1,7 +1,7 @@
 <div class="row product">
-    <div class="col-md-5 col-md-offset-0"><p><%= image_tag @gif.image, width: 400 %></p>
+    <div class="col-md-5 col-md-offset-2"><p><%= image_tag @gif.image, width: 400 %></p>
 </div>
-    <div class="col-md-7">
+    <div class="col-md-5">
         <h2><%= @gif.title %></h2>
         <p><%= @gif.description %></p>
         <h3><%= number_to_currency(@gif.format_price) %></h3>
