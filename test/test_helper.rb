@@ -36,13 +36,28 @@ class ActionDispatch::IntegrationTest
 
     visit '/'
 
-    click_on "Login"
+    click_on "login"
 
     fill_in "Username", with: "Brock"
     fill_in "Password", with: "password"
 
     within ".login" do
       click_on "Login"
+    end
+  end
+
+  def create_multiple_orders(num)
+    num.times do
+      user = create(:user)
+      gif = create(:gif)
+      order = user.orders.create(total_price: 100, status: "Ordered")
+      order.order_gifs.create(
+        gif_id: gif.id, quantity: 1, subtotal: 100
+      )
+      gif = create(:gif)
+      order.order_gifs.create(
+        gif_id: gif.id, quantity: 2, subtotal: 100
+      )
     end
   end
 end

@@ -11,7 +11,7 @@ class UnauthenticatedUserSecurityTest < ActionDispatch::IntegrationTest
 
     visit "/orders"
 
-    refute page.has_content? "Order: #{order1.id}"
+    refute page.has_content? "order_#{order1.id}"
     assert page.has_content? "The page you were looking for doesn't exist"
   end
 

@@ -1,13 +1,13 @@
 h1.brand {
   font-size: 300%;
   display:inline;
-  /*background-color: #999999;*/
 }
 
 h3.brand {
   font-size: 150%;
   display:inline;
   background-color: #999999;
+  color: #ffdc3a;
 }
 
 .center {

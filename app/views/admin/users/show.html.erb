@@ -1,2 +1,6 @@
-<h1>Admin Dashboard</h1>
-Welcome, <%= "#{current_user.username}" %>
+<div class="container">
+  <h1 class="text-center">.admin_dashboard</h1>
+  <p>Welcome, <%= "#{current_user.username}" %>
+  <p><%= link_to "View all orders", admin_orders_path %>
+  <p><%= link_to "Add New Gif", new_admin_gif_path %>
+</div>

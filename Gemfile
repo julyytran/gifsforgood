@@ -35,6 +35,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
 gem 'faker', github: 'stympy/faker'
+gem "datagrid"
+gem "will_paginate"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,3 +56,5 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
+
+gem 'kaminari'
