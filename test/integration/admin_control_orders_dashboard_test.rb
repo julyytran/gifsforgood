@@ -9,18 +9,11 @@ class AdminControlOrdersDashboardTest < ActionDispatch::IntegrationTest
     visit admin_dashboard_path
     click_link "View all orders"
 
-    assert page.has_content? "All Orders for gifs_for_good"
+    assert page.has_content? ".all_orders for gifs_for_good"
     assert_equal admin_orders_path, current_path
     assert page.has_content? "Ordered: 6"
+    assert page.has_link?(recent_order.id, admin_order_path(recent_order))
 save_and_open_page
-
-
-    assert page.has_link?("Order #{recent_order.id}", recent_order)
-
-
-
-    assert_equal "Ordered: 6"
-
 
     # When I visit the dashboard
     #   Then I can see a listing of all orders
