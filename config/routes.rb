@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get "/", to: "sessions#index"
+  root to: "gifs#index"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

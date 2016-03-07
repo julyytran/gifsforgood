@@ -6,10 +6,10 @@ class UserKeepsCartGifsAfterLoginTest < ActionDispatch::IntegrationTest
     gif2 = create(:gif)
 
     visit gif_path(gif)
-    click_on "Add to cart"
+    click_link "Add to cart"
 
     visit gif_path(gif2)
-    click_on "Add to cart"
+    click_link "Add to cart"
 
     assert page.has_content?("Cart(2)")
 

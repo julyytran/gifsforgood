@@ -5,9 +5,9 @@ class VisitorCanRemoveGifFromCartTest < ActionDispatch::IntegrationTest
     gif = create(:gif)
     gif2 = create(:gif)
     visit gif_path(gif)
-    click_button "Add to cart"
+    click_link "Add to cart"
     visit gif_path(gif2)
-    click_button "Add to cart"
+    click_link "Add to cart"
 
     click_link "Cart(2)"
 
