@@ -18,7 +18,7 @@
             <td><%= image_tag gif.image, width: 80 %></td>
             <td><%= gif.title %>
             <p><%= gif.description %></p></td>
-            <td><%= number_to_currency(gif.subtotal) %></td>
+            <td><%= number_to_currency(gif.format_price) %></td>
             <td>
               <%= form_tag(cart_path(id: gif.id), method: :patch) do %>
                 <p><%= select gif.id, gif.quantity, (1..15).to_a, selected: gif.quantity %></p>

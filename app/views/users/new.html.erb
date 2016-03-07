@@ -1,7 +1,10 @@
-<%= form_for(@user) do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit "Create Account" %>
-<% end %>
+<div class="text-center mousiness">
+  <h1>Please sign up</h1>
+  <%= form_for(@user) do |f| %>
+    <h4><%= f.label :username %></h4>
+    <h4><%= f.text_field :username %></h4>
+    <h4><%= f.label :password %></h4>
+    <h4><%= f.password_field :password %></h4>
+    <%= f.submit "Create Account", class: "btn btn-primary mousiness btn-font-size" %>
+  <% end %>
+</div>

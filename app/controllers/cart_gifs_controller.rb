@@ -2,7 +2,7 @@ class CartGifsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def create
-    gif = find_gif
+    gif = Gif.find(params[:gif_id])
     @cart.add_gif(gif.id)
     session[:cart] = @cart.contents
     flash[:notice] =
