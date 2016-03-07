@@ -29,13 +29,11 @@ class OrdersController < ApplicationController
   end
 
 private
-
+  
   def wrap_in_transaction
     ActiveRecord::Base.transaction do
       begin
         yield
-      ensure
-
       end
     end
   end
