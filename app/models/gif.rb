@@ -3,7 +3,6 @@ class Gif < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :image, presence: true
-  # validates :retired, presence: true
   has_many :tags, through: :gif_tags
   has_many :orders, through: :order_gifs
   has_many :gif_tags
