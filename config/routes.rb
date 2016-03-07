@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :orders
+  resources :orders
+  resources :orders
   root to: "gifs#index"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
@@ -10,6 +13,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "users#show"
+    resources :orders, only: [:index]
+    resources :models, only: [:index]
   end
 
   resources :cart_gifs, only: [:create]

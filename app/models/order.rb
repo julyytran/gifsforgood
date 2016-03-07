@@ -12,4 +12,8 @@ class Order < ActiveRecord::Base
       "In progress"
     end
   end
+
+  def self.status_breakdown
+    group(:status).order("count_status desc").count(:status)
+  end
 end
