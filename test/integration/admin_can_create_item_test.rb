@@ -5,13 +5,12 @@ class AdminCanCreateItemTest < ActionDispatch::IntegrationTest
     create_and_return_admin
 
     visit admin_dashboard_path
-
     click_on "Add New Gif"
 
     fill_in "Title", with: "all of teh lulz"
     fill_in "Description", with: "this is all the lulz you could imagine!!"
     fill_in "Price", with: "100"
-    fill_in "Tags", with: "lulzy" #HOW TO FILL IN MULTIPLE TAGS???
+    fill_in "Tags", with: "lulzy"
     fill_in "Image", with: "http://media2.giphy.com/media/jixtchplI4vYY/giphy.gif"
 
     click_on "add new gif!"
@@ -19,11 +18,3 @@ class AdminCanCreateItemTest < ActionDispatch::IntegrationTest
     assert_equal admin_dashboard_path, current_path
   end
 end
-
-
-
-# - An item must belong to at least one category.
-# - The title and description cannot be empty.
-# - The title must be unique for all items in the system.
-# - The price must be a valid decimal numeric value and greater than zero.
-# - The photo is optional. If not present, a stand-in photo is used.
