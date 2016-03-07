@@ -6,16 +6,14 @@ class UserKeepsCartGifsAfterLoginTest < ActionDispatch::IntegrationTest
     gif2 = create(:gif)
 
     visit gif_path(gif)
-    click_on "Add to cart"
+    click_link "Add to cart"
 
     visit gif_path(gif2)
-    click_on "Add to cart"
+    click_link "Add to cart"
 
     assert page.has_content?("Cart(2)")
 
-    user = User.create(username: "July", password: "password")
-
-    ApplicationController.any_instance.stubs(:current_user).returns(user)
+    create_and_login_user
 
     visit '/cart'
     assert page.has_content?("Cart(2)")

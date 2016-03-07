@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    username "MyString"
-    password_digest "MyString"
+    sequence(:username)  { |n| "user#{n}}" }
+    password "MyString"
   end
 end
