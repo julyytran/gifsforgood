@@ -1,5 +1,5 @@
 
-<h1 class="text-center">Your Order: <%= @order.id %></h1>
+<h1 class="text-center">your_order_#<%= @order.id %></h1>
 ​<div class="container">
   <table class="table table-striped">
     <thead>
@@ -33,7 +33,7 @@
       <div class="col-md-5 col-md-offset-0"><p><%= image_tag order_gif.gif.image, width: 200 %></p>
       </div>
       <h4><%= link_to order_gif.gif.title, gif_path(order_gif.gif) %></h4>
-      <h4><%= order_gif.quantity %></h4>
+      <h4>Quantity: <%= order_gif.quantity %></h4>
     </div>
   </div>
   <% end %>
