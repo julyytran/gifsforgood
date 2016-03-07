@@ -57,7 +57,7 @@ class AdminControlOrdersDashboardTest < ActionDispatch::IntegrationTest
     within page.all("tr")[5] do
       click_link "Cancel"
     end
-    save_and_open_page
+
     refute page.has_content? "Ordered: 9"
     assert page.has_content? "Cancelled: 1"
     assert page.has_content? "Paid: 1"
