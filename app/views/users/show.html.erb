@@ -1,3 +1,4 @@
-<h1>Logged in as <%= current_user.username %></h1>
-
-<%= link_to "Logout", logout_path, method: :delete %>
+<div class="row text-center">
+<h1>logged_in_as_<%= current_user.username %></h1>
+<h3><%= link_to "view_my_orders", orders_path %></h3>
+<div>
