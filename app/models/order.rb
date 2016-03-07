@@ -6,9 +6,9 @@ class Order < ActiveRecord::Base
   has_many :gifs, through: :order_gifs
 
   def order_status
-    if status == "completed"
+    if status.upcase == "completed".upcase
       "Order Complete on #{updated_at}"
-    elsif status == "cancelled"
+    elsif status.upcase == "cancelled".upcase
       "Order cancelled on #{updated_at}"
     else
       "In progress"
