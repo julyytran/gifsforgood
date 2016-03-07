@@ -5,7 +5,7 @@ class VisitorCanAdjustGifQuantityTest < ActionDispatch::IntegrationTest
     gif = create(:gif)
     visit gif_path(gif)
     click_link "Add to cart"
-    click_link "Cart(1)"
+    click_link "cart(1)"
 
     assert_equal "/cart", current_path
     within page.all("tr")[1] do

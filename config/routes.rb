@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/dashboard", to: "users#show"
     resources :orders, only: [:index, :update, :show]
+    resources :gifs, only: [:new]
   end
 
   resources :cart_gifs, only: [:create]
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:index, :show, :create]
 
-  resources :gifs, only: [:index, :show]
+  resources :gifs, only: [:index, :show, :create]
 
   resources :tags, only: [:index]
   get "/:name", :to => "tags#show", as: :tag

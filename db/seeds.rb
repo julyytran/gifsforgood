@@ -11,6 +11,7 @@ end
   gif.tags << Tag.all.shuffle.first
 end
 
+<<<<<<< HEAD
 
 20.times do
   subtotal = Random.new.rand(1..10)
@@ -25,3 +26,6 @@ end
     gif_id: gif.id, quantity: 2, subtotal: subtotal*2
   )
 end
+=======
+User.create(username: "Brian", password: "password", role: 1)
+>>>>>>> development

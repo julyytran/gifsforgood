@@ -11,7 +11,7 @@ class UserCanViewAllPastOrdersTest < ActionDispatch::IntegrationTest
 
     visit "/orders"
 
-    assert page.has_link?("Order: #{order1.id}")
-    assert page.has_link?("Order: #{order2.id}")
+    assert page.has_link?("order_#{order1.id}")
+    assert page.has_link?("order_#{order2.id}")
   end
 end

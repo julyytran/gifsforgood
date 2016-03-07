@@ -11,11 +11,11 @@ class UserKeepsCartGifsAfterLoginTest < ActionDispatch::IntegrationTest
     visit gif_path(gif2)
     click_link "Add to cart"
 
-    assert page.has_content?("Cart(2)")
+    assert page.has_content?("cart(2)")
 
     create_and_login_user
 
     visit '/cart'
-    assert page.has_content?("Cart(2)")
+    assert page.has_content?("cart(2)")
   end
 end

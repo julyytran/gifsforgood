@@ -18,3 +18,8 @@
 a.gif-title {
   color: black;
 }
+
+h1 {
+  color: orange !important
+  /*Shouldnt use important, but not working otherwise*/
+}

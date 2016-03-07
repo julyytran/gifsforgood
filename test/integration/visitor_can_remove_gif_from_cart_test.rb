@@ -9,7 +9,7 @@ class VisitorCanRemoveGifFromCartTest < ActionDispatch::IntegrationTest
     visit gif_path(gif2)
     click_link "Add to cart"
 
-    click_link "Cart(2)"
+    click_link "cart(2)"
 
     within first("#gif-info", minimum: 1) do
       click_link("Remove")

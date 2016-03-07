@@ -13,9 +13,9 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
 
     visit "/orders"
 
-    assert page.has_link?("Order: #{order.id}")
+    assert page.has_link?("order_#{order.id}")
 
-    click_on "Order: #{order.id}"
+    click_on "order_#{order.id}"
 
     assert_equal "/orders/#{order.id}", current_path
 
