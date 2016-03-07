@@ -10,3 +10,20 @@ end
               )
   gif.tags << Tag.all.shuffle.first
 end
+
+
+20.times do
+  subtotal = Random.new.rand(1..10)
+  user = User.create(username: "string", password: "password")
+  gif = Gif.all.shuffle.first
+  order = user.orders.create(total_price: 3*subtotal, status: "Ordered")
+  order.order_gifs.create(
+    gif_id: gif.id, quantity: 1, subtotal: subtotal
+  )
+  gif = Gif.all.shuffle.first
+  order.order_gifs.create(
+    gif_id: gif.id, quantity: 2, subtotal: subtotal*2
+  )
+end
+
+User.create(username: "Admin", password: "password", role: 1)

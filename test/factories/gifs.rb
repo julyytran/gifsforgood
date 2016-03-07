@@ -3,6 +3,7 @@ FactoryGirl.define do
     title { Faker::Hacker.adjective.capitalize + " " + Faker::Hipster.word.capitalize }
     description { Faker::Hacker.say_something_smart.capitalize }
     price 100
+    # retired false
     image "https://placeholdit.imgix.net/~text?txtsize=60&bg=000000&txt=640%C3%97480&w=640&h=480&fm=png"
 
     factory :gif_with_tags do

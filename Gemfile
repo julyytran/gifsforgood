@@ -35,6 +35,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
 gem 'faker', github: 'stympy/faker'
+gem "datagrid"
+gem "will_paginate"
 
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk', '>= 2.0.0'
@@ -57,3 +59,5 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
+
+gem 'kaminari'

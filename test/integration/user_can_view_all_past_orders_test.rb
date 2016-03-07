@@ -3,15 +3,14 @@ require "test_helper"
 class UserCanViewAllPastOrdersTest < ActionDispatch::IntegrationTest
   test "user sees title for all past orders" do
     user = User.create(username: "Jonas", password: "password")
-
-    order1 = user.orders.create
-    order2 = user.orders.create
-
     ApplicationController.any_instance.stubs(:current_user).returns(user)
+
+    order1 = user.orders.create(status: "pending", total_price: 10000)
+    order2 = user.orders.create(status: "pending", total_price: 10000)
 
     visit "/orders"
 
-    assert page.has_link?("Order: #{order1.id}")
-    assert page.has_link?("Order: #{order2.id}")
+    assert page.has_link?("order_#{order1.id}")
+    assert page.has_link?("order_#{order2.id}")
   end
 end

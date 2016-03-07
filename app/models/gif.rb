@@ -26,6 +26,4 @@ class Gif < ActiveRecord::Base
   def format_price
     price.to_f / 100
   end
-
-
 end

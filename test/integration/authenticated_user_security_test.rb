@@ -23,8 +23,9 @@ class AuthenticatedUserSecuirtyTest < ActionDispatch::IntegrationTest
     refute page.has_content? "#{user2.username}"
 
     visit "/orders"
-     assert page.has_content? "Order: #{order1.id}"
-     refute page.has_content? "Order: #{order2.id}"
+
+     assert page.has_content? "order_#{order1.id}"
+     refute page.has_content? "order_#{order2.id}"
   end
 
   test "user cannot view admin paths" do
@@ -38,7 +39,7 @@ class AuthenticatedUserSecuirtyTest < ActionDispatch::IntegrationTest
 
   test "user cannot make self admin" do
     create_and_login_user
-    
+
     visit "/users/new"
 
     refute page.has_content? "Role"
