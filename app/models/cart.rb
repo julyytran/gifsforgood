@@ -22,7 +22,11 @@ class Cart
     prices = cart_gifs.map do |cart_gif|
       (cart_gif.quantity * cart_gif.price).to_f / 100
     end
-    "$#{prices.reduce(:+)}0"
+    prices.reduce(:+)
+  end
+
+  def has_gifs?
+    contents.count > 0
   end
 
   def cart_gifs
@@ -31,4 +35,7 @@ class Cart
     end
   end
 
+  def contains_items?
+    !contents.empty?
+  end
 end
