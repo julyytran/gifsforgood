@@ -13,23 +13,26 @@
       <div class="row center">
         <div class="col-md-6">
           <h1 class="brand">gifs_for_good</h1>
-          <h3 class="brand">COMMIT_yourself</h3>
+          <div class="col-xs-6 col-xs-offset-1 col1">
+            <h3 class="brand" style="text-index: 10000px">COMMIT_yourself</h3>
+          </div>
         </div>
       </div>
     </div>
-  <nav class="navbar navbar-default navbar-static-top col-md-offset-6 col-md-4">
+  <nav class="navbar navbar-default navbar-static-top col-md-offset-5 col-md-7">
     <div class="container">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "Shop", root_path, class: "glyphicon" %></li>
+      <ul class="nav navbar-nav nav_links">
+        <li><%= link_to "shop_top_items", root_path, class: "glyphicon" %></li>
+        <li><%= link_to "shop_by_tag", tags_path, class: "glyphicon" %></li>
         <% if @cart.has_gifs? %>
-          <li><%= link_to " Cart(#{@cart.total_items})", cart_path, class: "glyphicon glyphicon-shopping-cart" %></li>
+          <li><%= link_to " cart(#{@cart.total_items})", cart_path, class: "glyphicon glyphicon-shopping-cart" %></li>
         <% end %>
         <% if current_user %>
-          <li><%= link_to "Logout", logout_path, method: :delete, class: "glyphicon" %></li>
-          <li><%= link_to "#{current_user.username}'s Dashboard", dashboard_path, class: "glyphicon" %></li>
+          <li><%= link_to "#{current_user.username}'s_dashboard", dashboard_path, class: "glyphicon" %></li>
+          <li><%= link_to "logout", logout_path, method: :delete, class: "glyphicon" %></li>
         <% else %>
-          <li><%= link_to "Login", login_path, class: "glyphicon" %></li>
-          <li><%= link_to "SignUp", new_user_path, class: "glyphicon" %></li>
+          <li><%= link_to "login", login_path, class: "glyphicon" %></li>
+          <li><%= link_to "sign_up", new_user_path, class: "glyphicon" %></li>
         <% end %>
       </ul>
     </div>
