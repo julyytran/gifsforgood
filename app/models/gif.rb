@@ -8,10 +8,7 @@ class Gif < ActiveRecord::Base
   has_many :gif_tags
   has_many :order_gifs
 
-
   def format_price
     price.to_f / 100
   end
-
-
 end

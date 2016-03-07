@@ -7,7 +7,7 @@ class UserCanViewARetiredGifTest < ActionDispatch::IntegrationTest
                      description: "super sweet",
                      price: 100,
                      image: "https://placeholdit.imgix.net/~text?txtsize=60&bg=000000&txt=640%C3%97480&w=640&h=480&fm=png",
-                     retired:true
+                     retired: true
     )
     ApplicationController.any_instance.stubs(:current_user).returns(user)
     order = user.orders.create(total_price: 100, status: "completed")
