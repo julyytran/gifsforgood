@@ -6,12 +6,12 @@ class AdminSeesAdminDashboardTest < ActionDispatch::IntegrationTest
 
     visit "/admin/dashboard"
 
-    assert page.has_content? "Admin Dashboard"
+    assert page.has_content? ".admin_dashboard"
   end
 
   test "registered user sees 404 when trying to visit admin dashboard" do
     create_and_login_user
-    
+
     visit "/admin/dashboard"
 
     refute page.has_content?("Admin Dashboard")

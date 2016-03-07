@@ -10,7 +10,7 @@ class Admin::OrdersController < Admin::BaseController
     @order = Order.find(params[:id])
     @order.update(status: params[:status])
     flash[:success] = "You have successfully updated Order#{@order.id} as #{params[:status]}"
-    render :index
+    redirect_to admin_orders_path
   end
 
   def show
