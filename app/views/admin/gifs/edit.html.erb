@@ -1,4 +1,4 @@
-<%= form_for(@gif) do |f| %>
+<%= form_for [:admin, @gif] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :description %>
@@ -9,5 +9,5 @@
   <%= text_field_tag :tags %>
   <%= f.label :image %>
   <%= f.text_field :image %>
-  <%= f.submit "add new gif!" %>
+  <%= f.submit "Update gif" %>
 <% end %>
