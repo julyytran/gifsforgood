@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   resources :tags, only: [:index]
   get "/:name", :to => "tags#show", as: :tag
 
+  resources :charges
 end
