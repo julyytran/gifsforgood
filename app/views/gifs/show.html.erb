@@ -12,5 +12,6 @@
           <button class="btn btn-default"><%= link_to "Add to cart", cart_gifs_path(gif_id: @gif.id), method: :post %></button>
           <% end %>
         </p>
+        <%= link_to "Edit", edit_admin_gif_path(@gif.id) %>
     </div>
 </div>
