@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/dashboard", to: "users#show"
     resources :orders, only: [:index, :update, :show]
-    resources :gifs, only: [:new]
+    resources :gifs, only: [:new, :edit, :update]
   end
 
   resources :cart_gifs, only: [:create]
