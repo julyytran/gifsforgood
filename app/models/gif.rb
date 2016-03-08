@@ -11,4 +11,12 @@ class Gif < ActiveRecord::Base
   def format_price
     price.to_f / 100
   end
+
+  def create_tags(gif_tags)
+    gif_tags.each { |tag| self.tags.find_or_create_by(name: tag) }
+  end
+
+  def active
+    !retired 
+  end
 end

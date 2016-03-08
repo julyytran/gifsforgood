@@ -11,7 +11,7 @@ class GifsController < ApplicationController
     @gif = Gif.new(gif_params)
     if @gif.save
       tags = params[:tags].split(",")
-      tags.each { |tag| @gif.tags.find_or_create_by(name: tag) }
+      @gif.create_tags(tags)
       flash[:success] = "Gif has been successfully added"
       redirect_to gif_path(@gif)
     else
@@ -19,7 +19,14 @@ class GifsController < ApplicationController
       render new_admin_gif_path
     end
   end
+
+  def update
+    @gif = find_gif
+    @gif.update_attributes(retired: true)
+    redirect_to gif_path(@gif.id)
+  end
 end
+
 private
 
 def gif_params
