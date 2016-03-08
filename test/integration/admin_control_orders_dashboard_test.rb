@@ -47,14 +47,14 @@ class AdminControlOrdersDashboardTest < ActionDispatch::IntegrationTest
 
     visit admin_orders_path
     assert page.has_content? "Ordered: 10"
-    within page.all("tr")[3] do
+    within "tr:nth-child(3)" do
       click_link "Mark As Paid"
     end
 
     assert page.has_content? "Ordered: 9"
     assert page.has_content? "Paid: 1"
 
-    within page.all("tr")[5] do
+    within "tr:nth-child(4)" do
       click_link "Cancel"
     end
 
