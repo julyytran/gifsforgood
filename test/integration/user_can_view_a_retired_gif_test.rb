@@ -10,7 +10,7 @@ class UserCanViewARetiredGifTest < ActionDispatch::IntegrationTest
                      retired: true
     )
     ApplicationController.any_instance.stubs(:current_user).returns(user)
-    order = user.orders.create(total_price: 100, status: 2)
+    order = user.orders.create(total_price: 100, status: "completed")
     order_gif = order.order_gifs.create(gif_id: gif.id, quantity: 1, subtotal: 100)
 
     visit order_path(order.id)

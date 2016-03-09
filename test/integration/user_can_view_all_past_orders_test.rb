@@ -5,8 +5,8 @@ class UserCanViewAllPastOrdersTest < ActionDispatch::IntegrationTest
     user = User.create(username: "Jonas", password: "password")
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
-    order1 = user.orders.create(total_price: 10000)
-    order2 = user.orders.create(total_price: 10000)
+    order1 = user.orders.create(status: "pending", total_price: 10000)
+    order2 = user.orders.create(status: "pending", total_price: 10000)
 
     visit "/orders"
 

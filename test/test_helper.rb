@@ -50,28 +50,14 @@ class ActionDispatch::IntegrationTest
     num.times do
       user = create(:user)
       gif = create(:gif)
-      OrderGif.create(
+      order = user.orders.create(total_price: 100, status: "Ordered")
+      order.order_gifs.create(
         gif_id: gif.id, quantity: 1, subtotal: 100
       )
-      order = user.orders.create!(total_price: 100, status: 0)
-
       gif = create(:gif)
       order.order_gifs.create(
         gif_id: gif.id, quantity: 2, subtotal: 100
       )
     end
-  end
-
-  def create_a_gif
-    visit admin_dashboard_path
-    click_on "Add New Gif"
-
-    fill_in "Title", with: "all of teh lulz"
-    fill_in "Description", with: "this is all the lulz you could imagine!!"
-    fill_in "Price", with: "100"
-    fill_in "Tags", with: "lulzy, defeated, dusty"
-    attach_file "Image", "test/asset_tests/gifs/carmer-got-carmed.gif"
-
-    click_on "add new gif!"
   end
 end

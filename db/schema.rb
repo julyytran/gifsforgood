@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309040009) do
+ActiveRecord::Schema.define(version: 20160305222929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "charities", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "logo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
 
   create_table "gif_tags", force: :cascade do |t|
     t.integer  "tag_id"
@@ -39,17 +31,10 @@ ActiveRecord::Schema.define(version: 20160309040009) do
     t.string   "description"
     t.integer  "price"
     t.string   "image"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.boolean  "retired",            default: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.integer  "charity_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "retired",     default: false
   end
-
-  add_index "gifs", ["charity_id"], name: "index_gifs_on_charity_id", using: :btree
 
   create_table "order_gifs", force: :cascade do |t|
     t.integer  "order_id"
@@ -65,9 +50,9 @@ ActiveRecord::Schema.define(version: 20160309040009) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "status",      default: 0
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "status"
     t.integer  "total_price"
   end
 
@@ -89,7 +74,6 @@ ActiveRecord::Schema.define(version: 20160309040009) do
 
   add_foreign_key "gif_tags", "gifs"
   add_foreign_key "gif_tags", "tags"
-  add_foreign_key "gifs", "charities"
   add_foreign_key "order_gifs", "gifs"
   add_foreign_key "order_gifs", "orders"
   add_foreign_key "orders", "users"
