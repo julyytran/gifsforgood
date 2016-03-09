@@ -1,6 +1,5 @@
 class Admin::GifsController < Admin::BaseController
   def new
-    binding.pry
     @gif = Gif.new
     @charities = Charity.all
   end
