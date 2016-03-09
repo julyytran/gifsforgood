@@ -7,7 +7,7 @@ class VisitorViewsAllGifsTest < ActionDispatch::IntegrationTest
 
     visit gifs_path
 
-    assert page.has_css?("img[src='#{gif1.image.url}']")
-    assert page.has_css?("img[src='#{gif2.image.url}']")
+    assert page.has_css?("img[src='#{gif1.image}']")
+    assert page.has_css?("img[src='#{gif2.image}']")
   end
 end

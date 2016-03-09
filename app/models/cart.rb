@@ -18,10 +18,6 @@ class Cart
     contents.values.sum
   end
 
-  def has_gifs?
-    total_items > 0
-  end
-
   def total_price
     prices = cart_gifs.map do |cart_gif|
       (cart_gif.quantity * cart_gif.price).to_f / 100
@@ -29,9 +25,17 @@ class Cart
     prices.reduce(:+)
   end
 
+  def has_gifs?
+    contents.count > 0
+  end
+
   def cart_gifs
     contents.map do |gif_id, quantity|
       CartGif.new(gif_id, quantity)
     end
+  end
+
+  def contains_items?
+    !contents.empty?
   end
 end

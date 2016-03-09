@@ -1,6 +1,7 @@
-<div class="text-center">
+<div class="row text-center">
 <h1>your_orders</h1>
   <% @orders.each do |order| %>
+  <div class="container row">
     <h4> <%= link_to "order_#{order.id}", order_path(order) %> </h4>
   </div>
   <% end %>

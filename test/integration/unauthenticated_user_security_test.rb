@@ -4,7 +4,7 @@ class UnauthenticatedUserSecurityTest < ActionDispatch::IntegrationTest
   test "visitor cannot see other users' orders" do
     user1 = create(:user)
     gif1 = create(:gif)
-    order1 = user1.orders.create(total_price: 100)
+    order1 = user1.orders.create(total_price: 100, status: "Pending")
     order_gif1 = order1.order_gifs.create(
       gif_id: gif1.id, quantity: 1, subtotal: 100
     )

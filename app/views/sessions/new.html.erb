@@ -1,14 +1,12 @@
 <div class="login">
-  <div class="text-center">
+  <div class="text-center mousiness">
     <h1>Login</h1>
     <%= form_for(:session, url: login_path) do |f| %>
       <h4><%= f.label :username %></h4>
       <h4><%= f.text_field :username %></h4>
       <h4><%= f.label :password %></h4>
       <h4><%= f.password_field :password %></h4>
-      <%= f.submit "Login", class: "btn btn-primary btn-font-size" %><br>
-      <br>
-      <%= link_to "Havn't Registered? Sign up here!", new_user_path, class: "btn btn-primary btn-font-size" %>
+      <%= f.submit "Login", class: "btn btn-primary mousiness btn-font-size" %>
     <% end %>
   </div>
 </div>

@@ -4,7 +4,7 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
   test "user sees details about their order" do
     user = User.create(username: "Jade", password: "passsword")
     gif = create(:gif)
-    order = user.orders.create(total_price: 100)
+    order = user.orders.create(total_price: 100, status: "Pending")
     order_gif = order.order_gifs.create(
       gif_id: gif.id, quantity: 1, subtotal: 100
     )

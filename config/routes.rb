@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :orders
+  resources :orders
+  resources :orders
   root to: "gifs#index"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
@@ -10,7 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/dashboard", to: "users#show"
     resources :orders, only: [:index, :update, :show]
-    resources :gifs, only: [:new, :create, :edit, :update]
+    resources :gifs, only: [:new]
   end
 
   resources :cart_gifs, only: [:create]
@@ -22,11 +26,7 @@ Rails.application.routes.draw do
 
   resources :gifs, only: [:index, :show, :create]
 
-  put "/retire", to: "gifs#update"
-
-  resources :charities, only: [:index, :show]
-
   resources :tags, only: [:index]
-  get "/tag/:name", :to => "tags#show", as: :tag
+  get "/:name", :to => "tags#show", as: :tag
 
 end

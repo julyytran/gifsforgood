@@ -5,12 +5,10 @@ class Order < ActiveRecord::Base
   has_many :order_gifs
   has_many :gifs, through: :order_gifs
 
-  enum status: %w(ordered paid completed cancelled)
-
   def order_status
-    if completed?
+    if status.upcase == "completed".upcase
       "Order Complete on #{updated_at}"
-    elsif cancelled?
+    elsif status.upcase == "cancelled".upcase
       "Order cancelled on #{updated_at}"
     else
       "In progress"
@@ -18,9 +16,6 @@ class Order < ActiveRecord::Base
   end
 
   def self.status_breakdown
-    grouped = group(:status).order("count_status desc").count(:status)
-    changed = grouped.map do | k, v |
-      [statuses.key(k), v]
-    end.to_h
+    group(:status).order("count_status desc").count(:status)
   end
 end
