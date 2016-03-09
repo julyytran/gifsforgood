@@ -5,9 +5,9 @@
   <%= f.text_field :description %>
   <%= f.label :price %>
   <%= f.text_field :price %>
-  <%= f.label :tags %>
-  <%= f.text_field :tags %>
+  <%= label_tag :tags %>
+  <%= text_field_tag :tags %>
   <%= f.label :image %>
-  <%= f.text_field :image %>
+  <%= f.file_field :image %>
   <%= f.submit "add new gif!" %>
 <% end %>

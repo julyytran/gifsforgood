@@ -4,14 +4,14 @@ class AuthenticatedUserSecuirtyTest < ActionDispatch::IntegrationTest
   test "user cannot view other user's info" do
     user1 = create(:user)
     gif1 = create(:gif)
-    order1 = user1.orders.create(total_price: 100, status: "Pending")
+    order1 = user1.orders.create(total_price: 100)
     order_gif1 = order1.order_gifs.create(
       gif_id: gif1.id, quantity: 1, subtotal: 100
     )
 
     user2 = create(:user)
     gif2 = create(:gif)
-    order2 = user2.orders.create(total_price: 100, status: "Pending")
+    order2 = user2.orders.create(total_price: 100)
     order_gif2 = order2.order_gifs.create(
       gif_id: gif2.id, quantity: 1, subtotal: 100
     )
