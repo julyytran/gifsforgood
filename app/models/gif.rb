@@ -8,7 +8,7 @@ class Gif < ActiveRecord::Base
   has_many :order_gifs
   has_many :orders, through: :order_gifs
   belongs_to :charity
-  attr_accessor :image_file_name
+  attr_accessor :image
 
   has_attached_file :image, :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :url => "/system/:attachment/:id/:style/:filename",
