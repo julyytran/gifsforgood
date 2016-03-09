@@ -20,3 +20,5 @@
 
 #Ignore database config for username
 /config/database.yml
+
+.DS_Store
