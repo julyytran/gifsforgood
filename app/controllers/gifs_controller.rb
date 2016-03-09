@@ -5,6 +5,7 @@ class GifsController < ApplicationController
 
   def show
     @gif = find_gif
+    @charity = @gif.charity
   end
 
   def create
@@ -12,6 +13,7 @@ class GifsController < ApplicationController
     if @gif.save
       tags = params[:tags].split(",")
       @gif.create_tags(tags)
+      Charity.find_by(name: params[:charity]).gifs << @gif
       flash[:success] = "Gif has been successfully added"
       redirect_to gif_path(@gif)
     else
