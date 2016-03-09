@@ -1,16 +1,19 @@
 h1.brand {
-  font-size: 300%;
   display:inline;
 }
 
 h3.brand {
-  font-size: 150%;
-  display:inline;
-  background-color: #999999;
-  color: #ffdc3a;
+  display:inline-flex;;
+  color: #fffd39;
 }
 
-.center {
-  min-height: 5em;
-  vertical-align: middle
+div.jumbotron.hero {
+    padding-top: 48px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #777;
+    font-size: larger;
 }
