@@ -1,5 +1,5 @@
 class Gif < ActiveRecord::Base
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true
   validates :description, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :image, presence: true
@@ -23,10 +23,13 @@ class Gif < ActiveRecord::Base
   end
 
   def create_tags(gif_tags)
-    gif_tags.each { |tag| self.tags.find_or_create_by(name: tag) }
+    gif_tags.each do |tag|
+      gifs_tag = Tag.find_or_create_by(name: "#{tag}")
+      gifs_tag.gifs << self
+    end
   end
 
   def active
-    !retired 
+    !retired
   end
 end
