@@ -26,6 +26,7 @@ end
   )
 end
 
+
 User.create(username: "Admin", password: "password", role: 1)
 
 Charity.create(name: "Colorado Coalition Against Sexual Assault", description: "The Colorado Coalition Against Sexual Assault (CCASA) is a membership organization promoting safety, justice and healing for survivors while working toward the elimination of sexual violence.", logo: "http://www.ccasa.org/wp-content/uploads/2015/02/logo2.png")
