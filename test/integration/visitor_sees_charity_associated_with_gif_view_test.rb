@@ -23,11 +23,11 @@ class VisitorSeesCharityAssociatedWithGifViewTest < ActionDispatch::IntegrationT
     Charity.all.each do  | charity |
       assert page.has_content?(charity.name)
       assert page.has_css?("img[src='#{charity.logo}']")
-      assert page.has_link?(charity_path(charity))
+      assert page.has_link?("View all gifs associated with this charity", charity_path(charity.id))
     end
 
     id = Charity.first.id
-    click_link Charity.first
+    visit charity_path(id)
     assert_equal "/charities/#{id}", current_path
   end
 end

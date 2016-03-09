@@ -20,10 +20,9 @@ a.gif-title {
 }
 
 h1 {
-  color: orange !important
+  color: orange !important;
   /*Shouldnt use important, but not working otherwise*/
 }
-\
 
 .charity-message {
   border-style: dotted;
