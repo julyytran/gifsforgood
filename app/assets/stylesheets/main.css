@@ -2,7 +2,7 @@
   font-family: 'Alef', sans-serif;
 }
 .body {
-  background-color: #B8EBCB;
+  background-color: ;
 }
 
 .jumbotron {
@@ -12,7 +12,6 @@
 .gif-title {
   min-height: 90px;
   padding-top: 20px;
-  color: black;
 }
 
 a.gif-title {
@@ -22,4 +21,16 @@ a.gif-title {
 h1 {
   color: orange !important
   /*Shouldnt use important, but not working otherwise*/
+}
+
+footer {
+    background-color: #818181;
+    height: 100px;
+    display: block;
+    margin-top: 50px;
+}
+
+footer h3 {
+  padding-top: 30px;
+  color: #FFA500;
 }
