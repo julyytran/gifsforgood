@@ -24,7 +24,7 @@ h1 {
 }
 
 footer {
-    background-color: #333;
+    background-color: #818181;
     height: 100px;
     display: block;
     margin-top: 50px;
@@ -32,5 +32,5 @@ footer {
 
 footer h3 {
   padding-top: 30px;
-  color: white;
+  color: #FFA500;
 }

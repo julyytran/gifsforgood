@@ -14,6 +14,9 @@ div.jumbotron.hero {
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #777;
-    font-size: larger;
+  color: #FFA500;
+}
+
+.navbar-default .navbar-nav > li > a  {
+  font-size: larger;
 }
