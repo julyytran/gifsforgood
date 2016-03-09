@@ -12,8 +12,12 @@
           <button class="btn btn-default"><%= link_to "Add to cart", cart_gifs_path(gif_id: @gif.id), method: :post %></button>
           <% end %>
         </p>
+        <% if @charity %>
+        <p><%= link_to (image_tag @charity.logo, width: 150), charity_path(@charity) %>
+          <p>Purchase of this gif will support <%= link_to @charity.name, charity_path(@charity) %>.</p>
+            <% end %>
         <% if current_admin? %>
-        <%= link_to "Edit", edit_admin_gif_path(@gif.id) %>
+        <p><%= link_to "Edit", edit_admin_gif_path(@gif.id) %>
         <% end %>
     </div>
 </div>

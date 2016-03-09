@@ -1,13 +1,17 @@
-<%= form_for(@gif) do |f| %>
-  <%= f.label :title %>
+<%= form_for [@charity, @gif] do |f| %>
+  <p><%= f.label :title %>
   <%= f.text_field :title %>
-  <%= f.label :description %>
+  <p><%= f.label :description %>
   <%= f.text_field :description %>
-  <%= f.label :price %>
+  <p><%= f.label :price %>
   <%= f.text_field :price %>
-  <%= label_tag :tags %>
+  <p><%= label_tag :tags %>
   <%= text_field_tag :tags %>
-  <%= f.label :image %>
+  <p><%= f.label :image %>
   <%= f.file_field :image %>
-  <%= f.submit "add new gif!" %>
+
+  <p><%= select @gif.id, :charity, @charities.map{|charity|charity.name} %></p>
+
+
+  <p><%= f.submit "add new gif!" %>
 <% end %>

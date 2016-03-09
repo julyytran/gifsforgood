@@ -2,6 +2,11 @@ class Admin::GifsController < Admin::BaseController
 
   def new
     @gif = Gif.new
+    @charities = Charity.all
+  end
+
+  def create
+    @gif = Gif.new(gif_params)
   end
 
   def edit

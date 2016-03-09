@@ -1,0 +1,17 @@
+<h1 class="text-center">.charities_we_support</h1>
+
+<div class="col-md-6 col-md-offset-3 charity-message">
+<h4 class="charity-message">All proceeds from the sale of commit gifs will benefit the charity they are associated with.</h4>
+</div>
+<div class="container">
+  <div class="row">
+    <% @charities.each do |charity| %>
+      <div class="col-md-4">
+        <h4 class="text-center"><%= charity.name %></h4>
+        <p><%= image_tag charity.logo, class: "center-block " %>
+        <p><%= charity.description %></p>
+        <p><%= link_to "View all gifs associated with this charity", charity_path(charity) %>
+      </div>
+    <% end %>
+  </div>
+</div>
