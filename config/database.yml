@@ -82,5 +82,5 @@ production:
   <<: *default
   database: gifs_for_good_production
   # username: gifs_for_good
-  username: July
+  username: brianrippeto
   password: <%= ENV['GIFS_FOR_GOOD_DATABASE_PASSWORD'] %>
