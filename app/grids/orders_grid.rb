@@ -24,18 +24,18 @@ class OrdersGrid
   column(:status)
   column(:total_price)
   column(:cancel, :html => true) do |record|
-    if record.status == "Ordered" || "Paid"
-      link_to "Cancel", admin_order_path(record, status: "Cancelled"), method: :patch
+    if record.ordered? || record.paid?
+      link_to "Cancel", admin_order_path(record, status: 3), method: :patch
     end
   end
   column(:mark_as_paid, :html => true) do |record|
-    if record.status == "Ordered"
-      link_to "Mark As Paid", admin_order_path(record, status: "Paid"), method: :patch
+    if record.ordered?
+      link_to "Mark As Paid", admin_order_path(record, status: 1), method: :patch
     end
   end
   column(:mark_as_completed, html: true) do |record|
-    if record.status == "Paid"
-      link_to "Mark As Completed", admin_order_path(record, status: "Completed"), method: :patch
+    if record.paid?
+      link_to "Mark As Completed", admin_order_path(record, status: 2), method: :patch
     end
   end
 end

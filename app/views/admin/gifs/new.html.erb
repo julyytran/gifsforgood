@@ -1,13 +1,17 @@
-<%= form_for(@gif) do |f| %>
-  <%= f.label :title %>
+<%= form_for @gif, url: admin_gifs_path do |f| %>
+  <p><%= f.label :title %>
   <%= f.text_field :title %>
-  <%= f.label :description %>
+  <p><%= f.label :description %>
   <%= f.text_field :description %>
-  <%= f.label :price %>
+  <p><%= f.label :price %>
   <%= f.text_field :price %>
-  <%= f.label :tags %>
-  <%= f.text_field :tags %>
-  <%= f.label :image %>
-  <%= f.text_field :image %>
-  <%= f.submit "add new gif!" %>
+  <p><%= label_tag :tags %>
+  <%= text_field_tag :tags %>
+  <p><%= f.label :image %>
+  <%= f.file_field :image %>
+
+  <p><%= select @gif.id, :charity, @charities.map{|charity|charity.name} %></p>
+
+
+  <p><%= f.submit "add new gif!" %>
 <% end %>

@@ -8,8 +8,8 @@ class Admin::OrdersController < Admin::BaseController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(status: params[:status])
-    flash[:success] = "You have successfully updated Order#{@order.id} as #{params[:status]}"
+    @order.update(status: params[:status].to_i)
+    flash[:success] = "You have successfully updated Order#{@order.id} as #{@order.status}"
     redirect_to admin_orders_path
   end
 

@@ -11,9 +11,9 @@ class OrderTest < ActiveSupport::TestCase
 
   test "order status returns correct order status" do
     user = User.create(username: "Jade", password: "passsword")
-    order1 = user.orders.create(status: "completed")
-    order2 = user.orders.create(status: "cancelled")
-    order3 = user.orders.create(status: "pending")
+    order1 = user.orders.create(status: 2)
+    order2 = user.orders.create(status: 3)
+    order3 = user.orders.create(status: 0)
 
     assert_equal "Order Complete on #{order1.updated_at}", order1.order_status
     assert_equal "Order cancelled on #{order2.updated_at}", order2.order_status

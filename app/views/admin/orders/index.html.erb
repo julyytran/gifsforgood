@@ -5,15 +5,14 @@
       <tr><th>Order Statuses</th></tr>
       <% if @orders %>
         <% @orders.status_breakdown.each do |status, amount| %>
-          <% next if status.nil? %>
           <tr>
-            <td><%= "#{status}: #{amount}" %></td>
+            <td><%= "#{status.capitalize}: #{amount}" %></td>
           </tr>
         <% end %>
       <% end %>
     </table>
   </span>
-  <div class="all_orders">
+  <div class="all_orders col-md-offset-1">
     <%= datagrid_form_for @grid, :method => :get, :url => admin_orders_path %>
     <%= paginate(@grid.assets) %>
     <%= datagrid_table @grid %>

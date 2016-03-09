@@ -1,20 +1,31 @@
 require "test_helper"
 
 class AdminCanCreateItemTest < ActionDispatch::IntegrationTest
-  test "admin can create an item" do
+  test "admin can create multiple item with mutliple tags" do
     create_and_return_admin
+    create_a_gif
 
-    visit admin_dashboard_path
-    click_on "Add New Gif"
+    assert page.has_content? "all of teh lulz"
 
-    fill_in "Title", with: "all of teh lulz"
-    fill_in "Description", with: "this is all the lulz you could imagine!!"
-    fill_in "Price", with: "100"
-    fill_in "Tags", with: "lulzy"
-    fill_in "Image", with: "http://media2.giphy.com/media/jixtchplI4vYY/giphy.gif"
+    visit tags_path
 
-    click_on "add new gif!"
+    assert page.has_content? "lulzy"
+    assert page.has_content? "defeated"
+    assert page.has_content? "dusty"
+  end
 
-    assert_equal admin_dashboard_path, current_path
+  test "creating an image and giving it exisitng tags does not duplicate the tag" do
+    create_and_return_admin
+    create_a_gif
+
+    assert 1, Tag.where(name: "lulzy").count
+    assert 1, Tag.where(name: "defeated").count
+    assert 1, Tag.where(name: "dusty").count
+
+    create_a_gif
+
+    assert 1, Tag.where(name: "lulzy").count
+    assert 1, Tag.where(name: "defeated").count
+    assert 1, Tag.where(name: "dusty").count
   end
 end
