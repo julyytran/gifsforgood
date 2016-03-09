@@ -13,7 +13,7 @@ class AdminCanUpdateAGifTest < ActionDispatch::IntegrationTest
     fill_in "Description", with: "this is all the lulz you could imagine!!"
     fill_in "Price", with: "100"
     fill_in "Tags", with: "lulzy, defeated, dusty"
-    fill_in "Image", with: "http://media2.giphy.com/media/jixtchplI4vYY/giphy.gif"
+    attach_file "Image", "test/asset_tests/gifs/carmer-got-carmed.gif"
 
     click_on "Update gif"
 
@@ -33,7 +33,7 @@ class AdminCanUpdateAGifTest < ActionDispatch::IntegrationTest
     fill_in "Description", with: "this is all the lulz you could imagine!!"
     fill_in "Price", with: "100"
     fill_in "Tags", with: "lulzy, defeated, dusty"
-    fill_in "Image", with: "http://media2.giphy.com/media/jixtchplI4vYY/giphy.gif"
+    attach_file "Image", "test/asset_tests/gifs/carmer-got-carmed.gif"
 
   end
 end
