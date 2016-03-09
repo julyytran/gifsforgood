@@ -32,7 +32,7 @@
       <% end %>
       <tr>
         <td colspan=5 align=right>
-          <p>Total: <%= number_to_currency(@cart.total_price) %></p>
+          <p>Total: $<%= @cart.total_price / 100 %>.00</p>
           <p><%= link_to "Checkout", new_charge_path %></p>
         </td>
       </tr>
