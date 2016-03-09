@@ -7,13 +7,13 @@ class VisitorViewGifsByTagTest < ActionDispatch::IntegrationTest
     gif_1.tags.create(name: "animated")
     gif_2.tags.create(name: "groups")
 
-    visit "/animated"
+    visit "/tag/animated"
 
     assert page.has_content?(gif_1.title)
     assert page.has_css?("img[src='#{gif_1.image}']")
     refute page.has_content?(gif_2.title)
 
-    visit "/groups"
+    visit "/tag/groups"
 
     assert page.has_content?(gif_2.title)
     assert page.has_css?("img[src='#{gif_2.image}']")
@@ -25,12 +25,12 @@ class VisitorViewGifsByTagTest < ActionDispatch::IntegrationTest
     gif_1.tags.create(name: "animated")
     gif_1.tags.create(name: "cute")
 
-    visit "/animated"
+    visit "/tag/animated"
 
     assert page.has_content?(gif_1.title)
     assert page.has_css?("img[src='#{gif_1.image}']")
 
-    visit "/cute"
+    visit "/tag/cute"
 
     assert page.has_content?(gif_1.title)
     assert page.has_css?("img[src='#{gif_1.image}']")
