@@ -1,4 +1,7 @@
-<h1>Please provide a payment method to continue with your purchase.</h1>
+<div class="container">
+  <h1>Please provide a payment method to continue with your purchase.</h1>
+  <div class="col-md-12 text-center">
+
 
 <%= form_tag charges_path do %>
   <article>
@@ -18,3 +21,5 @@
           data-amount="<%= @amount %>"
           data-locale="auto"></script>
 <% end %>
+  </div>
+</div>
