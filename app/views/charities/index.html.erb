@@ -6,13 +6,13 @@
 <div class="container">
     <% @charities.each do |charity| %>
       <div class="col-md-4">
-        <h3 class="text-center"><%= charity.name %></h3>
+        <h3 class="text-center charity-name"><%= charity.name %></h3>
         <br>
         <div class="text-center">
-        <p><%= link_to image_tag(charity.logo), charity.link, class: "center-block" %>
+        <p class="charity-image"><%= link_to image_tag(charity.logo), charity.link, class: "center-block" %></p>
         </div>
-        <p><%= charity.description %></p>
-        <p><%= link_to "View all gifs associated with this charity", charity_path(charity), class: "btn btn-default btn-font-size center-block" %>
+        <p class="charity-description"><%= charity.description %></p>
+        <p><%= link_to "View all gifs associated with this charity", charity_path(charity), class: "btn btn-default btn-font-size center-block" %></p>
       </div>
     <% end %>
 </div>
