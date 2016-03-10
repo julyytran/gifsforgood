@@ -1,8 +1,8 @@
 # 10.times do
 #   Tag.create(name: Faker::Hipster.word)
 # end
-#
-# 20.times do
+# #
+# 71.times do
 #   gif = Gif.create(title: Faker::Lorem.sentence,
 #               description: " adfg",
 #               price: 100,

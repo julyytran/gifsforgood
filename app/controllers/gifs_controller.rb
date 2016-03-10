@@ -1,6 +1,6 @@
 class GifsController < ApplicationController
   def index
-    @gifs = Gif.favorite_gifs
+    @gifs = Gif.all.page params[:page]
   end
 
   def show
