@@ -27,10 +27,10 @@ class GifsController < ApplicationController
     @gif.update_attributes(retired: true)
     redirect_to gif_path(@gif.id)
   end
-end
 
 private
 
-def gif_params
-  params.require(:gif).permit(:title, :description, :price, :tag, :image)
+  def gif_params
+    params.require(:gif).permit(:title, :description, :price, :tag, :image)
+  end
 end
