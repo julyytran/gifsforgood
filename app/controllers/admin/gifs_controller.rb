@@ -26,7 +26,10 @@ class Admin::GifsController < Admin::BaseController
 
   def update
     @gif = Gif.find(params[:id])
-    if @gif.update(gif_params) || @gif
+    if @gif.update(gif_params)
+      if params[:tags]
+        Tag.find_or_create_by(name: params[:tags]).gifs << @gif
+      end
       redirect_to gif_path(@gif.id)
     else
       flash.now[:error] = "Invalid input"
