@@ -1,6 +1,6 @@
 <div class="row product gif-show-photo">
-    <div class="col-md-offset-1 col-md-4"><p><%= image_tag @gif.image, width: 400 %></p></div>
-    <div class="container col-xs-12 col-md-3 gif-show">
+    <div class="col-md-offset-1 col-md-4 text-center"><p><%= image_tag @gif.image, width: 400 %></p></div>
+      <div class="container col-md-offset-1 col-xs-12 col-md-3 gif-show">
         <h2><%= @gif.title %></h2>
         <p><%= @gif.description %></p>
         <h3><%= number_to_currency(@gif.format_price) %></h3>
@@ -11,10 +11,6 @@
             <button class="btn btn-default"><%= link_to "Add to cart", cart_gifs_path(gif_id: @gif.id), method: :post %></button>
           <% end %>
         </p>
-        <h3>Tags</h3>
-        <% @gif.tags.each do |tag| %>
-          <h4><%= link_to tag.name, tag_path(tag.name) %></h4>
-        <% end %>
         <br>
         <% if current_admin? %>
           <p><%= link_to "Edit", edit_admin_gif_path(@gif.id), class: "btn btn-default" %>
@@ -25,5 +21,15 @@
           <p><%= link_to (image_tag @charity.logo, width: 150), charity_path(@charity), class: "charity-link"%>
           <p>Purchase of this gif will support <%= link_to @charity.name, @charity.link %>.</p>
         <% end %>
+      </div>
+      <div class="col-md-12 text-center">
+      <h3>Tags</h3>
+      <% @gif.tags.each_slice(1) do |row| %>
+        <div class="col-md-4 text-center">
+          <% row.each do |tag| %>
+          <h4><%= link_to tag.name, tag_path(tag.name), class: "btn btn-default" %></h4>
+          <% end %>
+        </div>
+      <% end %>
       </div>
 </div>
