@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_cart
-  helper_method :current_user, :current_admin?
+  helper_method :current_user, :current_admin?, :format_price
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -18,5 +18,9 @@ class ApplicationController < ActionController::Base
 
   def find_gif
     Gif.find(params[:id])
+  end
+
+  def format_price(number)
+    "$#{sprintf('%.2f', number.to_f/100)}"
   end
 end

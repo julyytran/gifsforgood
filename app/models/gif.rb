@@ -20,10 +20,6 @@ class Gif < ActiveRecord::Base
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
-  def format_price
-    price.to_f / 100
-  end
-
   def create_tags(gif_tags)
     gif_tags.each do |tag|
       gifs_tag = Tag.find_or_create_by(name: "#{tag}")

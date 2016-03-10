@@ -23,11 +23,11 @@ class UserCanViewAPastOrderTest < ActionDispatch::IntegrationTest
       assert page.has_link?(order_gif.gif.title)
       assert page.has_css?("img[src='#{order_gif.gif.image}']")
       assert page.has_content?(order_gif.quantity)
-      assert page.has_content?(order_gif.subtotal)
+      assert page.has_content?("$1.00")
     end
 
     assert page.has_content? order.status
-    assert page.has_content? order.total_price
+    assert page.has_content? "$1.00"
     assert page.has_content? order.created_at
     assert page.has_content? order.order_status
     assert page.has_content? order.updated_at

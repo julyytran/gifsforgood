@@ -3,12 +3,12 @@
     <div class="container col-xs-12 col-md-3 gif-show">
         <h2><%= @gif.title %></h2>
         <p><%= @gif.description %></p>
-        <h3><%= number_to_currency(@gif.format_price) %></h3>
+        <h3><%= format_price(@gif.price) %></h3>
         <p>
           <% if @gif.retired? %>
           <%= "Sorry, this gif is no longer available" %>
           <% else %>
-          <button class="btn btn-default"><%= link_to "Add to cart", cart_gifs_path(gif_id: @gif.id), method: :post %></button>
+          <%= link_to "Add to cart", cart_gifs_path(gif_id: @gif.id), method: :post, class: "btn btn-default" %>
           <% end %>
         </p>
         <h3>Tags</h3>

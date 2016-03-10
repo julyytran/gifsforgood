@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   delete "/cart", to: "cart_gifs#destroy"
   patch "/cart", to: "cart_gifs#update"
 
-  resources :orders, only: [:index, :show, :create]
+  resources :orders, only: [:index, :show, :create, :new]
 
   resources :gifs, only: [:index, :show, :create]
 
@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   resources :tags, only: [:index]
   get "/tag/:name", :to => "tags#show", as: :tag
 
+  resources :charges
 end
