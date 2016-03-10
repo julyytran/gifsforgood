@@ -4,6 +4,6 @@ class TagsController < ApplicationController
   end
 
   def index
-    @tags = Tag.all
+    @tags = Tag.alpha
   end
 end
