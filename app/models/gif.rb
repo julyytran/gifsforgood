@@ -30,4 +30,8 @@ class Gif < ActiveRecord::Base
   def active
     !retired
   end
+
+  def self.favorite_gifs
+    joins(:tags).where(tags: {name: "faves"})
+  end
 end
