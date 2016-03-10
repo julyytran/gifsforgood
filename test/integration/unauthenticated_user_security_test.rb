@@ -16,6 +16,9 @@ class UnauthenticatedUserSecurityTest < ActionDispatch::IntegrationTest
   end
 
   test "visitor redirected to login when trying to check out" do
+    gif = create(:gif)
+    visit gif_path(gif)
+    click_link "Add to cart"
     visit "/cart"
     click_on "Checkout"
 

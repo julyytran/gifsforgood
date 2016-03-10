@@ -8,6 +8,7 @@ class Gif < ActiveRecord::Base
   has_many :order_gifs
   has_many :orders, through: :order_gifs
   belongs_to :charity
+  attr_accessor :image
 
   has_attached_file :image, :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :url => "/system/:attachment/:id/:style/:filename",
@@ -18,10 +19,6 @@ class Gif < ActiveRecord::Base
     }
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-
-  def format_price
-    price.to_f / 100
-  end
 
   def create_tags(gif_tags)
     gif_tags.each do |tag|

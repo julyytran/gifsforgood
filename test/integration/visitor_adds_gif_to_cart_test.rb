@@ -7,14 +7,13 @@ class VisitorAddsGifToCartTest < ActionDispatch::IntegrationTest
     visit gif_path(gif)
 
     refute page.has_content?("cart(1)")
-
     click_link "Add to cart"
 
     assert page.has_content?("You added 1 license for #{gif.title}")
     assert page.has_content?("cart(1)")
   end
 
-  test "after purchase visitor views cart and sees gif" do
+  test "after adding gif to cart visitor views cart and sees gif" do
     gif = create(:gif)
     visit gif_path(gif)
     click_link "Add to cart"

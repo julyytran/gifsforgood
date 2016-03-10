@@ -23,4 +23,8 @@ class Order < ActiveRecord::Base
       [statuses.key(k), v]
     end.to_h
   end
+
+  def update_status_paid
+    update(status: 1)
+  end
 end

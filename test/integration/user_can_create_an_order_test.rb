@@ -1,26 +1,23 @@
 require "test_helper"
 
 class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
-  test "logged_in user can checkout from cart to create an order" do
+  test "logged_in user sees Stripe checkout process after checking out from cart" do
+
     user = create(:user)
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
     gif = create(:gif)
 
     visit gif_path(gif)
-
     click_link "Add to cart"
-
     visit "/cart"
 
     within "table" do
       click_on "Checkout"
     end
 
-    assert_equal "/orders", current_path
-    assert page.has_content?("Order was successfully placed.")
-
-    assert page.has_content? "order_#{user.orders.last.id}"
+    assert_equal new_charge_path, current_path
+    assert page.has_content?("Please provide a payment method to continue with your purchase.")
   end
 
   test "logged out user prompted to log in before checkout" do
@@ -50,8 +47,6 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     within "table" do
       click_on "Checkout"
     end
-
-      assert page.has_content? "order_#{user.orders.last.id}"
   end
 
   test "user can create multiple orders and view them" do
@@ -69,7 +64,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
       click_on "Checkout"
     end
 
-    assert page.has_content? "order_#{user.orders.first.id}"
+    assert page.has_content? "Please provide a payment method to continue with your purchase."
 
     visit gif_path(gif2)
     click_link "Add to cart"
@@ -79,6 +74,8 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     within "table" do
       click_on "Checkout"
     end
+
+    visit orders_path
 
     assert page.has_content? "order_#{user.orders.first.id}"
     assert page.has_content? "order_#{user.orders.last.id}"
