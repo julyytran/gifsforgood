@@ -21,11 +21,11 @@ class Admin::GifsController < Admin::BaseController
   end
 
   def edit
-    @gif = Gif.find(params[:id])
+    @gif = find_gif
   end
 
   def update
-    @gif = Gif.find(params[:id])
+    @gif = find_gif
     if @gif.update(gif_params)
       if params[:tags]
         tags = params[:tags].split(", ")
@@ -38,10 +38,24 @@ class Admin::GifsController < Admin::BaseController
     end
   end
 
-end
+  def destroy
+    @gif = find_gif
+    @gif.destroy
+    flash[:success] = "This gif was successfully deleted."
+    redirect_to root_url
+  end
 
 private
 
-def gif_params
-  params.require(:gif).permit(:title, :description, :price, :tag, :image, :retired)
+  def gif_params
+    params.require(:gif).permit(:title, :description, :price, :tag, :image, :retired)
+  end
+
+  def redirect_to_back(default = root_url)
+    if request.env["HTTP_REFERER"].present? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
+      redirect_to :back
+    else
+      redirect_to default
+    end
+  end
 end
