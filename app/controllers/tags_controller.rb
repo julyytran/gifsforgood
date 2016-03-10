@@ -4,6 +4,6 @@ class TagsController < ApplicationController
   end
 
   def index
-    @tags = Tag.all.page params[:page]
+    @tags = Tag.alpha.page params[:page]
   end
 end
