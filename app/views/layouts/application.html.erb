@@ -20,9 +20,10 @@
   </div>
   <nav class="navbar navbar-inverse col-md-12">
     <div class="container">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right gif-links">
         <li><%= link_to "shop_top_items", root_path, class: "glyphicon" %></li>
         <li><%= link_to "shop_by_tag", tags_path, class: "glyphicon" %></li>
+        <li><%= link_to "shop_by_charity", charities_path, class: "glyphicon" %></li>
         <% if @cart.has_gifs? %>
           <li><%= link_to " cart(#{@cart.total_items})", cart_path, class: "glyphicon glyphicon-shopping-cart" %></li>
         <% end %>
@@ -44,8 +45,8 @@
     </div>
   </div>
   <%= yield %>
-  <div class="container-fluid">
-    <footer><h3 class="text-center">Gifs for Good © 2016</h3></footer>
+  <div class="text-center">
+    <footer><h3>gifs_for_good © 2016</h3></footer>
   </div>
   </body>
 </html>
