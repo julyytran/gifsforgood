@@ -1,6 +1,6 @@
 class GifsController < ApplicationController
   def index
-    @gifs = Gif.all
+    @gifs = Gif.all_active
   end
 
   def show

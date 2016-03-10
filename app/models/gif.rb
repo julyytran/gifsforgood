@@ -30,4 +30,8 @@ class Gif < ActiveRecord::Base
   def active
     !retired
   end
+
+  def self.all_active
+    Gif.all.each { |gif| gif.active }
+  end
 end
