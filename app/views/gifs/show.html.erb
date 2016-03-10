@@ -13,16 +13,17 @@
         </p>
         <h3>Tags</h3>
         <% @gif.tags.each do |tag| %>
-      <h4><%= link_to tag.name, tag_path(tag.id) %></h4>
+        ga<h4><%= link_to tag.name, tag_path(tag.name) %></h4>
+        <% end %>
+        <br>
+        <% if current_admin? %>
+        <p><%= link_to "Edit", edit_admin_gif_path(@gif.id), class: "btn btn-default" %>
         <% end %>
       </div>
       <div class="container col-md-2 charity-column">
         <% if @charity %>
         <p><%= link_to (image_tag @charity.logo, width: 150), charity_path(@charity), class: "charity-link"%>
         <p>Purchase of this gif will support <%= link_to @charity.name, @charity.link %>.</p>
-        <% end %>
-        <% if current_admin? %>
-        <p><%= link_to "Edit", edit_admin_gif_path(@gif.id) %>
         <% end %>
       </div>
 </div>
