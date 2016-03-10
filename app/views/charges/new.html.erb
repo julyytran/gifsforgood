@@ -8,7 +8,7 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Amount: $<%= @amount / 100 %>.00</span>
+      <span>Amount: <%= format_price(@amount) %></span>
     </label>
   </article>
 

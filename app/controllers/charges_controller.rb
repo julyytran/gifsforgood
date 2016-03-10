@@ -1,11 +1,10 @@
 class ChargesController < ApplicationController
+  before_action :get_order_amount, only: [:new, :create]
+
   def new
-    @amount = @cart.total_price
   end
 
   def create
-    # Amount in cents
-    @amount = @cart.total_price
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]
@@ -18,16 +17,19 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
 
+  order = Order.last
+  order.update_status_paid
+  flash[:success] = "Thank you for your contribution of #{format_price(@amount)}!"
+  redirect_to order_path(order)
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
   end
 
-  #must log in before can click checkout
-  #save cart contents to make a new order
-  #mark order as paid
-  #associate order with current user
-  #save customer.id to user
-  #clear cart
-  #fix tests 
+private
+
+  def get_order_amount
+    @amount = Order.last.total_price
+  end
 end
