@@ -33,6 +33,7 @@ class Gif < ActiveRecord::Base
 
   def self.favorite_gifs
     joins(:tags).where(tags: {name: "faves"})
+  end
 
   def self.all_active
     Gif.all.each { |gif| gif.active }
