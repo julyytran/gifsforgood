@@ -1,0 +1,36 @@
+<div class="jumbotron hero">
+  <div class="container">
+    <div class="col-md-7">
+      <h1 class="brand">gifs_for_good</h1>
+    </div>
+    <div class=" col-md-offset-3 col-md-8">
+      <h3 class="brand">COMMIT_yourself</h3>
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-inverse col-md-12">
+  <div class="container">
+    <ul class="nav navbar-nav navbar-right gif-links">
+      <li><%= link_to "shop_top_items", root_path, class: "glyphicon" %></li>
+      <li><%= link_to "shop_by_tag", tags_path, class: "glyphicon" %></li>
+      <li><%= link_to "shop_by_charity", charities_path, class: "glyphicon" %></li>
+      <% if @cart.has_gifs? %>
+        <li><%= link_to " cart(#{@cart.total_items})", cart_path, class: "glyphicon glyphicon-shopping-cart" %></li>
+      <% end %>
+      <% if current_user %>
+        <li><%= link_to "#{current_user.username}'s_dashboard", dashboard_path, class: "glyphicon" %></li>
+        <li><%= link_to "logout", logout_path, method: :delete, class: "glyphicon" %></li>
+      <% else %>
+        <li><%= link_to "login", login_path, class: "glyphicon" %></li>
+        <li><%= link_to "sign_up", new_user_path, class: "glyphicon" %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class ="col-md-12">
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, sanitize(message), class: "alert alert-#{type}" %>
+    <% end %>
+  </div>
+</div>
