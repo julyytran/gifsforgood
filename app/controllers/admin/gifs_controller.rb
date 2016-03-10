@@ -7,7 +7,7 @@ class Admin::GifsController < Admin::BaseController
   def create
     @gif = Gif.new(gif_params)
     if @gif.save
-      tags = params[:tags].split(",")
+      tags = params[:tags].split(", ")
       @gif.create_tags(tags)
       if params[:charity]
         Charity.find_by(name: params[:charity]).gifs << @gif
@@ -28,9 +28,8 @@ class Admin::GifsController < Admin::BaseController
     @gif = Gif.find(params[:id])
     if @gif.update(gif_params)
       if params[:tags]
-        tags = params[:tags].split(",")
+        tags = params[:tags].split(", ")
         @gif.create_tags(tags)
-        # Tag.find_or_create_by(name: "#{params[:tags]}").gifs << @gif
       end
       redirect_to gif_path(@gif.id)
     else
