@@ -7,10 +7,11 @@
   background-size: contain;
 }
 .gif-title {
-  min-height: 90px;
-  padding-top: 20px;
+  min-height: 50px;
+  margin-top: 60px;
+  margin-bottom: 0;
+  color: black;
 }
-
 a.gif-title {
   color: black;
 }
@@ -21,7 +22,11 @@ h1 {
 }
 
 .gif-show-photo {
-  padding-top: 70px;
+  padding-top: 100px;
+}
+
+.charity-column {
+  padding-top: 35px;
 }
 
 .charity-message {
@@ -34,9 +39,6 @@ h1 {
   margin: 20px 0px 40px 0px;
 }
 
-.container-fluid {
-  padding-left: 0px;
-}
 html, body {
   overflow: auto;
   height: 100%;
