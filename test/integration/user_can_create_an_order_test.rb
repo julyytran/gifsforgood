@@ -50,7 +50,6 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
   end
 
   test "user can create multiple orders and view them" do
-    skip
     user = create(:user)
     gif = create(:gif)
     gif2 = create(:gif)
@@ -65,7 +64,7 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
       click_on "Checkout"
     end
 
-    assert page.has_content? "order_#{user.orders.first.id}"
+    assert page.has_content? "Please provide a payment method to continue with your purchase."
 
     visit gif_path(gif2)
     click_link "Add to cart"
@@ -75,6 +74,8 @@ class UserCanCreateAnOrderTest < ActionDispatch::IntegrationTest
     within "table" do
       click_on "Checkout"
     end
+
+    visit orders_path
 
     assert page.has_content? "order_#{user.orders.first.id}"
     assert page.has_content? "order_#{user.orders.last.id}"
