@@ -4,7 +4,7 @@ h1.brand {
 
 h3.brand {
   display:inline-flex;;
-  color: #fffd39;
+  color: #fff;
 }
 
 div.jumbotron.hero {
@@ -13,10 +13,11 @@ div.jumbotron.hero {
     margin-bottom: 0px;
 }
 
-.navbar-default .navbar-nav > li > a {
+.gif-links{
   color: #FFA500;
 }
 
-.navbar-default .navbar-nav > li > a  {
+.navbar-inverse .navbar-nav > li > a  {
   font-size: larger;
+  bacground-color: #fff;
 }
